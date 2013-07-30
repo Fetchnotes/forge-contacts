@@ -19,7 +19,7 @@
     int count = ABAddressBookGetPersonCount(addressBook);
     NSLog(@"count: %i", count);
 
-    NSString *query = @"horak";
+    NSString *query = @"hor";
     
     // Grab people matching query
     CFArrayRef people = ABAddressBookCopyPeopleWithName(addressBook,
@@ -30,14 +30,34 @@
     NSUInteger length = [dataCopy count];
     NSLog(@"nums: %lu", (unsigned long)length);
     
-    
-    // Store values in array
+    // Store results in array
     NSMutableArray *data = [[NSMutableArray alloc] init];
     for (int i = 0; i < length; i++) {
-        NSString * lastName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(people, i), kABPersonLastNameProperty );
-        NSString * firstName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(people, i), kABPersonFirstNameProperty );
-        [data addObject:lastName];
-        [data addObject:firstName];
+        NSString * firstName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(people, i), kABPersonFirstNameProperty);
+        NSString * lastName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(people, i), kABPersonLastNameProperty);
+//        NSString * email = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(people, i), kABPersonEmailProperty );
+//        NSString * phone = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(people, i), kABPersonPhoneProperty );
+//        [data addObject:firstName];
+//        [data addObject:lastName];
+//        [data addObject:email];
+//        [data addObject:phone];
+//        NSLog(@"firstName: %@",firstName);
+//        NSLog(@"lastName: %@",lastName);
+//        NSLog(@"email: %@",email);
+//        NSLog(@"phone: %@",phone);
+        
+        // Create JSON object
+        NSDictionary *setUser = [NSDictionary
+                                 dictionaryWithObjectsAndKeys:firstName,@"firstName",
+                                 lastName,@"lastName",
+//                                 email,@"email",
+//                                 phone,@"phone",
+                                 nil];
+//        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:setUser
+//                                                           options:NSJSONWritingPrettyPrinted error:nil];
+
+        NSLog(@"jsonData%@", setUser);
+        [data addObject:setUser];
     }
     
     
