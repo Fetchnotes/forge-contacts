@@ -84,12 +84,6 @@
             [task success:data];
         } else {
             // Show an alert if "Appleseed" is not in Contacts
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                            message:@"Could not find perons in the Contacts application"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Cancel"
-                                                  otherButtonTitles:nil];
-            [alert show];
             [task error:nil];
         }
     }
