@@ -52,5 +52,17 @@
 			<div id="_output">
 			</div>
 		</div>
+        
+        <script>
+            forge.internal.call('contacts.showAlert',
+                                {
+                                Skip: 0,
+                                Limit: 10
+                                }, function (contacts) {
+                    console.log(contacts);
+                }, function (error) {
+                    console.log(error);
+                });
+        </script>
 	</body>
 </html>

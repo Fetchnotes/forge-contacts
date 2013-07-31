@@ -11,7 +11,10 @@
 
 // This will be callable from JavaScript as 'contacts.showAlert'
 // it will require a parameter called text
-+ (void)showAlert:(ForgeTask*)task {
++ (void)getContacts:(ForgeTask*)task Skip:(NSNumber*)skip Limit:(NSNumber*)limit {
+    
+    int skipNum = [skip intValue];
+    int limitNum = [limit intValue];
     
     // What we grab from the js TODO
     NSString *searchQuery = @"";
@@ -32,7 +35,7 @@
         
         NSMutableArray *allEmails = [[NSMutableArray alloc] initWithCapacity:CFArrayGetCount(addressBookCopy)];
         
-        for (CFIndex i = 0; i < 30; i++) {
+        for (CFIndex i = skipNum; i < limitNum; i++) {
             ABRecordRef person = CFArrayGetValueAtIndex(addressBookCopy, i);
             ABMultiValueRef emails = ABRecordCopyValue(person, kABPersonEmailProperty);
             for (CFIndex j=0; j < ABMultiValueGetCount(emails); j++) {
