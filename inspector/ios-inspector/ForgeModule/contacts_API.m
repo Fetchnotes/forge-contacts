@@ -16,10 +16,8 @@
     // What we grab from the js TODO
     NSString *searchQuery = @"";
     
-    // Grab the entire address book & size
+    // Grab the entire address book
     ABAddressBookRef addressBook = ABAddressBookCreate();
-    int addressBookSize = ABAddressBookGetPersonCount(addressBook);
-    NSLog(@"Size of entire Address Book: %i", addressBookSize);
     
     // Grab queriedAddressBook & size
     CFArrayRef queriedAddressBook = ABAddressBookCopyPeopleWithName(addressBook,
@@ -31,8 +29,10 @@
     // If there is something in searchQuery - use just the queriedAddressBook because that doesn't need to copy the entire array.
     if (queriedAddressBookSize == 0) {
         CFArrayRef addressBookCopy = ABAddressBookCopyArrayOfAllPeople(addressBook);
+        
         NSMutableArray *allEmails = [[NSMutableArray alloc] initWithCapacity:CFArrayGetCount(addressBookCopy)];
-        for (CFIndex i = 0; i < CFArrayGetCount(addressBookCopy); i++) {
+        
+        for (CFIndex i = 0; i < 30; i++) {
             ABRecordRef person = CFArrayGetValueAtIndex(addressBookCopy, i);
             ABMultiValueRef emails = ABRecordCopyValue(person, kABPersonEmailProperty);
             for (CFIndex j=0; j < ABMultiValueGetCount(emails); j++) {
@@ -44,24 +44,12 @@
         CFRelease(addressBook);
         CFRelease(addressBookCopy);
         
-        NSMutableArray *data2 = [[NSMutableArray alloc] init];
-        for (int i = 0; i < addressBookSize; i++) {
-            NSString * firstName2 = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(addressBook, i), kABPersonFirstNameProperty);
-            NSString * lastName2 = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(addressBook, i), kABPersonLastNameProperty);
-            
-            NSDictionary *setUser = [NSDictionary
-                                     dictionaryWithObjectsAndKeys:firstName2,@"firstName",
-                                     lastName2,@"lastName",
-    //                                 email,@"email",
-    //                                 phone,@"phone",
-                                     nil];
-        }
-
+        [task success:allEmails];
         
     } else {
         
-        // Store results in array
         NSMutableArray *data = [[NSMutableArray alloc] init];
+        
         for (int i = 0; i < queriedAddressBookSize; i++) {
             NSString * firstName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(queriedAddressBook, i), kABPersonFirstNameProperty);
             NSString * lastName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(queriedAddressBook, i), kABPersonLastNameProperty);

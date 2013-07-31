@@ -1,6 +1,6 @@
 {
-    "description": "sending over 'hor' - about 20 results", 
+    "description": "sending over 30 emails", 
     "name": "contacts", 
     "platform_version": "v2.0.0", 
-    "version": "0.2"
+    "version": "0.4"
 }
