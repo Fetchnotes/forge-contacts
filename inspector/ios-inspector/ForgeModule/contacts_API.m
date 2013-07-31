@@ -11,13 +11,10 @@
 
 // This will be callable from JavaScript as 'contacts.showAlert'
 // it will require a parameter called text
-+ (void)getContacts:(ForgeTask*)task Skip:(NSNumber*)skip Limit:(NSNumber*)limit {
++ (void)getContacts:(ForgeTask*)task Query:(NSString*)searchQuery Skip:(NSNumber*)skip Limit:(NSNumber*)limit {
     
     int skipNum = [skip intValue];
     int limitNum = [limit intValue];
-    
-    // What we grab from the js TODO
-    NSString *searchQuery = @"";
     
     // Grab the entire address book
     ABAddressBookRef addressBook = ABAddressBookCreate();
