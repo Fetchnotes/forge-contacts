@@ -62,20 +62,11 @@
         NSMutableArray *matchedContacts = [[NSMutableArray alloc] init];
         
         for (int i = skipNum; i < limitNum; i++) {
-            ABRecordRef person = CFArrayGetValueAtIndex(queriedAddressBook, i);
             NSString * contactFirstName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(queriedAddressBook, i), kABPersonFirstNameProperty);
             NSString * contactLastName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(queriedAddressBook, i), kABPersonLastNameProperty);
+            NSMutableDictionary *contactPhoneNumbers = [[NSMutableDictionary alloc] init];
+            ABRecordRef person = CFArrayGetValueAtIndex(queriedAddressBook, i);
             NSMutableArray *contactEmails = [[NSMutableArray alloc] init];
-    //        NSString * email = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(people, i), kABPersonEmailProperty );
-    //        NSString * phone = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(people, i), kABPersonPhoneProperty );
-    //        [data addObject:firstName];
-    //        [data addObject:lastName];
-    //        [data addObject:email];
-    //        [data addObject:phone];
-    //        NSLog(@"firstName: %@",firstName);
-    //        NSLog(@"lastName: %@",lastName);
-    //        NSLog(@"email: %@",email);
-    //        NSLog(@"phone: %@",phone);
             
             ABMultiValueRef emails = ABRecordCopyValue(person, kABPersonEmailProperty);
             for (CFIndex j=0; j < ABMultiValueGetCount(emails); j++) {
@@ -83,25 +74,28 @@
                 [contactEmails addObject:email];
             }
             
+            ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
+            for (CFIndex j=0; j< ABMultiValueGetCount(phoneNumbers); j++) {
+                NSString* number = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, j);
+                NSString* label = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneNumbers, j);
+                [contactPhoneNumbers setObject:number forKey:label];
+            }
+            
             NSDictionary *contact = [NSDictionary
                                      dictionaryWithObjectsAndKeys:
                                      contactFirstName, @"firstName",
                                      contactLastName, @"lastName",
                                      contactEmails, @"email",
-    //                                 phone,@"phone",
+                                     contactPhoneNumbers,@"phone",
                                      nil];
-    //        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:setUser
-    //                                                           options:NSJSONWritingPrettyPrinted error:nil];
 
             [matchedContacts addObject:contact];
         }
         
         
-        if ((queriedAddressBook != nil) && (CFArrayGetCount(queriedAddressBook) > 0))
-        {
+        if ((queriedAddressBook != nil) && (CFArrayGetCount(queriedAddressBook) > 0)) {
             [task success:matchedContacts];
         } else {
-            // Show an alert if "Appleseed" is not in Contacts
             [task error:nil];
         }
     }
