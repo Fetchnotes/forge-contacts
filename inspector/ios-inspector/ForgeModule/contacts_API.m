@@ -38,17 +38,27 @@
             NSString * contactLastName = (__bridge NSString *)ABRecordCopyValue( person, kABPersonLastNameProperty);
             NSMutableArray *contactEmails = [[NSMutableArray alloc] init];
 //            NSMutableArray *contactPhoneNumbers = [[NSMutableArray alloc] init];
+            NSMutableDictionary *contactPhoneNumbers = [[NSMutableDictionary alloc] init];
             
             ABMultiValueRef emails = ABRecordCopyValue(person, kABPersonEmailProperty);
             for (CFIndex j=0; j < ABMultiValueGetCount(emails); j++) {
                 NSString* email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(emails, j);
                 [contactEmails addObject:email];
             }
+
+            ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
+            for (CFIndex j=0; j< ABMultiValueGetCount(phoneNumbers); j++) {
+                NSString* number = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, j);
+                NSString* label = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneNumbers, j);
+                [contactPhoneNumbers setObject:number forKey:label];
+            }
+            
             
             NSMutableDictionary *contact = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                             contactEmails, @"emails",
                                             contactFirstName, @"firstName",
                                             contactLastName, @"lastName",
+                                            contactPhoneNumbers, @"mobile",
                                             nil];
             
             [matchedContacts addObject:contact];
