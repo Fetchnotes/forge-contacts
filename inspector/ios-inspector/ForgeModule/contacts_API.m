@@ -37,7 +37,6 @@
             NSString * contactFirstName = (__bridge NSString *)ABRecordCopyValue( person, kABPersonFirstNameProperty);
             NSString * contactLastName = (__bridge NSString *)ABRecordCopyValue( person, kABPersonLastNameProperty);
             NSMutableArray *contactEmails = [[NSMutableArray alloc] init];
-//            NSMutableArray *contactPhoneNumbers = [[NSMutableArray alloc] init];
             NSMutableDictionary *contactPhoneNumbers = [[NSMutableDictionary alloc] init];
             
             ABMultiValueRef emails = ABRecordCopyValue(person, kABPersonEmailProperty);
