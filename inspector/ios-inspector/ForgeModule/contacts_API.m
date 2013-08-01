@@ -4,32 +4,20 @@
 
 @implementation contacts_API
 
-//
-// Here you can implement your API methods which can be called from JavaScript
-// an example method is included below to get you started.
-//
-
-// This will be callable from JavaScript as 'contacts.showAlert'
-// it will require a parameter called text
+// If the searchQuery is empty - copy the entire address book and load everything. Used for initial load of view.
+// If searchQuery is nonempty - use just the queriedAddressBook because that doesn't need to copy the entire array.
 + (void)getContacts:(ForgeTask*)task Query:(NSString*)searchQuery Skip:(NSNumber*)skip Limit:(NSNumber*)limit {
     
     int skipNum = [skip intValue];
     int limitNum = [limit intValue];
     
-    // Grab the entire address book
     ABAddressBookRef addressBook = ABAddressBookCreate();
-    
-    // Grab queriedAddressBook & size
     CFArrayRef queriedAddressBook = ABAddressBookCopyPeopleWithName(addressBook,
                                                         (__bridge CFStringRef)searchQuery);
     NSUInteger queriedAddressBookSize = CFArrayGetCount(queriedAddressBook);
-    NSLog(@"Size of queriedAddressBook: %lu", (unsigned long)queriedAddressBookSize);
     
-    // If the searchQuery is empty - load everything. Usually on initial load of view.
-    // If there is something in searchQuery - use just the queriedAddressBook because that doesn't need to copy the entire array.
     if (queriedAddressBookSize == 0) {
         CFArrayRef addressBookCopy = ABAddressBookCopyArrayOfAllPeople(addressBook);
-        
         NSMutableArray *matchedContacts = [[NSMutableArray alloc] initWithCapacity:CFArrayGetCount(addressBookCopy)];
         
         for (CFIndex i = skipNum; i < limitNum; i++) {
@@ -52,7 +40,6 @@
                 [contactPhoneNumbers setObject:number forKey:label];
             }
             
-            
             NSMutableDictionary *contact = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                             contactEmails, @"emails",
                                             contactFirstName, @"firstName",
@@ -61,11 +48,12 @@
                                             nil];
             
             [matchedContacts addObject:contact];
-//            CFRelease(emails);
-//            CFRelease(firstNames);
+            
+            CFRelease(emails);
+            CFRelease(phoneNumbers);
         }
-//        CFRelease(addressBook);
-//        CFRelease(addressBookCopy);
+        CFRelease(addressBook);
+        CFRelease(addressBookCopy);
         
         [task success:matchedContacts];
         
