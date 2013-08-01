@@ -10,7 +10,6 @@
     
     int skipNum = [skip intValue];
     int limitNum = [limit intValue];
-    
     ABAddressBookRef addressBook = ABAddressBookCreate();
     CFArrayRef queriedAddressBook = ABAddressBookCopyPeopleWithName(addressBook,
                                                         (__bridge CFStringRef)searchQuery);
@@ -40,7 +39,8 @@
                 [contactPhoneNumbers setObject:number forKey:label];
             }
             
-            NSMutableDictionary *contact = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+            
+            NSDictionary *contact = [NSDictionary dictionaryWithObjectsAndKeys:
                                             contactEmails, @"emails",
                                             contactFirstName, @"firstName",
                                             contactLastName, @"lastName",
@@ -59,11 +59,13 @@
         
     } else {
         
-        NSMutableArray *data = [[NSMutableArray alloc] init];
+        NSMutableArray *matchedContacts = [[NSMutableArray alloc] init];
         
-        for (int i = 0; i < queriedAddressBookSize; i++) {
-            NSString * firstName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(queriedAddressBook, i), kABPersonFirstNameProperty);
-            NSString * lastName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(queriedAddressBook, i), kABPersonLastNameProperty);
+        for (int i = skipNum; i < limitNum; i++) {
+            ABRecordRef person = CFArrayGetValueAtIndex(queriedAddressBook, i);
+            NSString * contactFirstName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(queriedAddressBook, i), kABPersonFirstNameProperty);
+            NSString * contactLastName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(queriedAddressBook, i), kABPersonLastNameProperty);
+            NSMutableArray *contactEmails = [[NSMutableArray alloc] init];
     //        NSString * email = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(people, i), kABPersonEmailProperty );
     //        NSString * phone = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(people, i), kABPersonPhoneProperty );
     //        [data addObject:firstName];
@@ -75,24 +77,29 @@
     //        NSLog(@"email: %@",email);
     //        NSLog(@"phone: %@",phone);
             
-            // Create JSON object
-            NSDictionary *setUser = [NSDictionary
-                                     dictionaryWithObjectsAndKeys:firstName,@"firstName",
-                                     lastName,@"lastName",
-    //                                 email,@"email",
+            ABMultiValueRef emails = ABRecordCopyValue(person, kABPersonEmailProperty);
+            for (CFIndex j=0; j < ABMultiValueGetCount(emails); j++) {
+                NSString* email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(emails, j);
+                [contactEmails addObject:email];
+            }
+            
+            NSDictionary *contact = [NSDictionary
+                                     dictionaryWithObjectsAndKeys:
+                                     contactFirstName, @"firstName",
+                                     contactLastName, @"lastName",
+                                     contactEmails, @"email",
     //                                 phone,@"phone",
                                      nil];
     //        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:setUser
     //                                                           options:NSJSONWritingPrettyPrinted error:nil];
 
-            NSLog(@"jsonData%@", setUser);
-            [data addObject:setUser];
+            [matchedContacts addObject:contact];
         }
         
         
         if ((queriedAddressBook != nil) && (CFArrayGetCount(queriedAddressBook) > 0))
         {
-            [task success:data];
+            [task success:matchedContacts];
         } else {
             // Show an alert if "Appleseed" is not in Contacts
             [task error:nil];
