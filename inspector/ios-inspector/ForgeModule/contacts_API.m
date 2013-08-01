@@ -8,20 +8,32 @@
 // If searchQuery is nonempty - use just the queriedAddressBook because that doesn't need to copy the entire array.
 + (void)getContacts:(ForgeTask*)task Query:(NSString*)searchQuery Skip:(NSNumber*)skip Limit:(NSNumber*)limit {
     
-    int skipNum = [skip intValue];
-    int limitNum = [limit intValue];
+    int startAt = [skip intValue];
+    int amtToReturn = [limit intValue];
+    int stopAt = amtToReturn + startAt;
+//    int amtLeft = will difer for each
+    
+    
+    // need queried address book size
+    
     ABAddressBookRef addressBook = ABAddressBookCreate();
     CFArrayRef queriedAddressBook = ABAddressBookCopyPeopleWithName(addressBook,
                                                         (__bridge CFStringRef)searchQuery);
     NSUInteger queriedAddressBookSize = CFArrayGetCount(queriedAddressBook);
+    NSLog(@"Size of Queried Array: %lu",(unsigned long)queriedAddressBookSize);
     
-    NSLog(@"%lu",(unsigned long)queriedAddressBookSize);
-    
-    if (queriedAddressBookSize == 0) {
+    if ([searchQuery isEqual: @""]) {
+        
         CFArrayRef addressBookCopy = ABAddressBookCopyArrayOfAllPeople(addressBook);
         NSMutableArray *matchedContacts = [[NSMutableArray alloc] initWithCapacity:CFArrayGetCount(addressBookCopy)];
+
+        int sizeOfTotalAddressBookCopy = CFArrayGetCount(addressBookCopy);
+        NSLog(@"Total size of Address Book Copy: %i", sizeOfTotalAddressBookCopy);
+        int amtLeft = sizeOfTotalAddressBookCopy - startAt;
+        NSLog(@"Total number of contacts still not sent over: %i", amtLeft);
+
         
-        for (CFIndex i = skipNum; i < limitNum; i++) {
+        for (CFIndex i = startAt; i <= stopAt; i++) {
             ABRecordRef person = CFArrayGetValueAtIndex(addressBookCopy, i);
             NSString * contactFirstName = (__bridge NSString *)ABRecordCopyValue( person, kABPersonFirstNameProperty);
             NSString * contactLastName = (__bridge NSString *)ABRecordCopyValue( person, kABPersonLastNameProperty);
@@ -64,11 +76,10 @@
         [task success:matchedContacts];
         
     } else {
-                    NSLog(@"Heyo");
         
         NSMutableArray *matchedContacts = [[NSMutableArray alloc] init];
         
-        for (int i = skipNum; i < limitNum; i++) {
+        for (int i = startAt; i <= stopAt; i++) {
             NSString * contactFirstName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(queriedAddressBook, i), kABPersonFirstNameProperty);
             NSString * contactLastName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(queriedAddressBook, i), kABPersonLastNameProperty);
             NSMutableDictionary *contactPhoneNumbers = [[NSMutableDictionary alloc] init];
@@ -109,7 +120,6 @@
             [task success:matchedContacts];
         } else {
             CFRelease(addressBook);
-            NSLog(@"Hi");
             [task error:nil];
         }
     }
