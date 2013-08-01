@@ -30,21 +30,25 @@
     if (queriedAddressBookSize == 0) {
         CFArrayRef addressBookCopy = ABAddressBookCopyArrayOfAllPeople(addressBook);
         
-        NSMutableArray *allEmails = [[NSMutableArray alloc] initWithCapacity:CFArrayGetCount(addressBookCopy)];
+        NSMutableArray *matchedContacts = [[NSMutableArray alloc] initWithCapacity:CFArrayGetCount(addressBookCopy)];
         
         for (CFIndex i = skipNum; i < limitNum; i++) {
             ABRecordRef person = CFArrayGetValueAtIndex(addressBookCopy, i);
+            NSMutableArray *contactEmails = [[NSMutableArray alloc] init];
+            
             ABMultiValueRef emails = ABRecordCopyValue(person, kABPersonEmailProperty);
             for (CFIndex j=0; j < ABMultiValueGetCount(emails); j++) {
                 NSString* email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(emails, j);
-                [allEmails addObject:email];
+                [contactEmails addObject:email];
             }
-            CFRelease(emails);
+//            CFRelease(emails);
+            NSMutableDictionary *contact = [NSMutableDictionary dictionaryWithObjectsAndKeys:contactEmails, @"emails", nil];
+            [matchedContacts addObject:contact];
         }
-        CFRelease(addressBook);
-        CFRelease(addressBookCopy);
+//        CFRelease(addressBook);
+//        CFRelease(addressBookCopy);
         
-        [task success:allEmails];
+        [task success:matchedContacts];
         
     } else {
         
