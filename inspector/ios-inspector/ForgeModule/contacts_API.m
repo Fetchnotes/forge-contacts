@@ -34,16 +34,26 @@
         
         for (CFIndex i = skipNum; i < limitNum; i++) {
             ABRecordRef person = CFArrayGetValueAtIndex(addressBookCopy, i);
+            NSString * contactFirstName = (__bridge NSString *)ABRecordCopyValue( person, kABPersonFirstNameProperty);
+            NSString * contactLastName = (__bridge NSString *)ABRecordCopyValue( person, kABPersonLastNameProperty);
             NSMutableArray *contactEmails = [[NSMutableArray alloc] init];
+//            NSMutableArray *contactPhoneNumbers = [[NSMutableArray alloc] init];
             
             ABMultiValueRef emails = ABRecordCopyValue(person, kABPersonEmailProperty);
             for (CFIndex j=0; j < ABMultiValueGetCount(emails); j++) {
                 NSString* email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(emails, j);
                 [contactEmails addObject:email];
             }
-//            CFRelease(emails);
-            NSMutableDictionary *contact = [NSMutableDictionary dictionaryWithObjectsAndKeys:contactEmails, @"emails", nil];
+            
+            NSMutableDictionary *contact = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                            contactEmails, @"emails",
+                                            contactFirstName, @"firstName",
+                                            contactLastName, @"lastName",
+                                            nil];
+            
             [matchedContacts addObject:contact];
+//            CFRelease(emails);
+//            CFRelease(firstNames);
         }
 //        CFRelease(addressBook);
 //        CFRelease(addressBookCopy);
