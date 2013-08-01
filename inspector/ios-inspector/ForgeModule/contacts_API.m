@@ -15,6 +15,8 @@
                                                         (__bridge CFStringRef)searchQuery);
     NSUInteger queriedAddressBookSize = CFArrayGetCount(queriedAddressBook);
     
+    NSLog(@"%lu",(unsigned long)queriedAddressBookSize);
+    
     if (queriedAddressBookSize == 0) {
         CFArrayRef addressBookCopy = ABAddressBookCopyArrayOfAllPeople(addressBook);
         NSMutableArray *matchedContacts = [[NSMutableArray alloc] initWithCapacity:CFArrayGetCount(addressBookCopy)];
@@ -30,6 +32,7 @@
             for (CFIndex j=0; j < ABMultiValueGetCount(emails); j++) {
                 NSString* email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(emails, j);
                 [contactEmails addObject:email];
+                CFRelease((__bridge CFTypeRef)(email));
             }
 
             ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
@@ -37,6 +40,8 @@
                 NSString* number = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, j);
                 NSString* label = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneNumbers, j);
                 [contactPhoneNumbers setObject:number forKey:label];
+                CFRelease((__bridge CFTypeRef)(number));
+                CFRelease((__bridge CFTypeRef)(label));
             }
             
             
@@ -54,10 +59,12 @@
         }
         CFRelease(addressBook);
         CFRelease(addressBookCopy);
+        CFRelease(queriedAddressBook);
         
         [task success:matchedContacts];
         
     } else {
+                    NSLog(@"Heyo");
         
         NSMutableArray *matchedContacts = [[NSMutableArray alloc] init];
         
@@ -72,6 +79,7 @@
             for (CFIndex j=0; j < ABMultiValueGetCount(emails); j++) {
                 NSString* email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(emails, j);
                 [contactEmails addObject:email];
+                CFRelease((__bridge CFTypeRef)(email));                
             }
             
             ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
@@ -79,6 +87,8 @@
                 NSString* number = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, j);
                 NSString* label = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneNumbers, j);
                 [contactPhoneNumbers setObject:number forKey:label];
+                CFRelease((__bridge CFTypeRef)(number));
+                CFRelease((__bridge CFTypeRef)(label));
             }
             
             NSDictionary *contact = [NSDictionary
@@ -90,12 +100,16 @@
                                      nil];
 
             [matchedContacts addObject:contact];
+            CFRelease(emails);
+            CFRelease(phoneNumbers);
         }
         
-        
-        if ((queriedAddressBook != nil) && (CFArrayGetCount(queriedAddressBook) > 0)) {
+        if (queriedAddressBook != nil) {
+            CFRelease(addressBook);
             [task success:matchedContacts];
         } else {
+            CFRelease(addressBook);
+            NSLog(@"Hi");
             [task error:nil];
         }
     }
