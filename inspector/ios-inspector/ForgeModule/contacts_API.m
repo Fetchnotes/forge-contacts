@@ -33,12 +33,6 @@
             CFRelease(queriedAddressBook);
             [task error:@"No entries in address book"];
         }
-        if (sizeOfTotalAddressBookCopy == startAt) {
-            CFRelease(addressBook);
-            CFRelease(addressBookCopy);
-            CFRelease(queriedAddressBook);
-            [task success:@"No more contacts to grab"];
-        }
         
         int amtLeft = sizeOfTotalAddressBookCopy - startAt;
         
@@ -97,14 +91,14 @@
                 CFRelease(emails);
                 CFRelease(phoneNumbers);
             }
-            CFRelease(addressBook);
             CFRelease(addressBookCopy);
             CFRelease(queriedAddressBook);
             [task success:matchedContacts];
             
         } else {
-            NSLog(@"No more contacts to return");
-            [task error:nil];
+            [task success:@"No more contacts to return"];
+            CFRelease(addressBookCopy);
+            CFRelease(queriedAddressBook);
         }
         
     } else {
