@@ -27,9 +27,11 @@
 
         int sizeOfTotalAddressBookCopy = CFArrayGetCount(addressBookCopy);
         if (sizeOfTotalAddressBookCopy == 0) {
-             [task error:@"No entries in address book"];
+            CFRelease(addressBook);
+            CFRelease(addressBookCopy);
+            CFRelease(queriedAddressBook);
+            [task error:@"No entries in address book"];
         }
-        
         
         int amtLeft = sizeOfTotalAddressBookCopy - startAt;
         
@@ -40,19 +42,19 @@
         if (amtLeft > 0) {
             if (amtToReturn > sizeOfTotalAddressBookCopy) {
                 amtToReturn = sizeOfTotalAddressBookCopy;
-                NSLog(@"Amt to return is larger than the address book, setting amtToReturn to size of addressbook");                
+                NSLog(@"Amt to return is larger than the address book, setting amtToReturn to size of addressbook: %i", amtToReturn);
             }
-            else if (amtLeft <= amtToReturn) {	
+            if (amtLeft < amtToReturn) {
                 amtToReturn = amtLeft;
-                NSLog(@"amtLeft <= amtToReturn and so we have reached the end of the road. Return everything that is left");
+                NSLog(@"amtLeft <= amtToReturn and so we have reached the end of the road. Return everything that is left: %i", amtToReturn);
             }
-            else {
-                NSLog(@"amtLeft > amtToReturn and so go on per the usual ");
-            }
+
+            NSLog(@"amtLeft: %i >= amtToReturn: %i and so go on per the usual", amtLeft, amtToReturn);
             
             int stopAt = amtToReturn + startAt;
             
-            for (CFIndex i = startAt; i <= stopAt; i++) {
+            for (CFIndex i = startAt; i < stopAt; i++) {
+                NSLog(@"startAt: %i stopAt: %i i: %li", startAt, stopAt, i);
                 ABRecordRef person = CFArrayGetValueAtIndex(addressBookCopy, i);
                 NSString * contactFirstName = (__bridge NSString *)ABRecordCopyValue( person, kABPersonFirstNameProperty);
                 NSString * contactLastName = (__bridge NSString *)ABRecordCopyValue( person, kABPersonLastNameProperty);
