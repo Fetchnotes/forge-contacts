@@ -51,19 +51,18 @@
 			</div>
 			<div id="_output">
 			</div>
+            <script>
+                forge.internal.call('contacts.getContacts',
+                                    {
+                                    Query: "al",
+                                    Skip: 10,
+                                    Limit: 50
+                                    }, function (contacts) {
+                                    console.log(contacts);
+                                    }, function (error) {
+                                    console.log(error);
+                                    });
+            </script>
 		</div>
-        
-        <script>
-            forge.internal.call('contacts.getContacts',
-                                {
-                                Query: "alex horak",
-                                Skip: 10,
-                                Limit: 50
-                                }, function (contacts) {
-                    console.log(contacts);
-                }, function (error) {
-                    console.log(error);
-                });
-        </script>
 	</body>
 </html>

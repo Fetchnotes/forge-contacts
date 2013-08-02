@@ -1,0 +1,22 @@
+TForgeModuleResources
+v5
+r1
+cCheck dependencies
+cTouch /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos/contacts.bundle
+
+N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos/contacts.bundle
+t2
+s0
+
+CCheck dependencies
+r0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciesbc0235f979acb741^a08b3af979acb741^---0#1#0#--18"Check dependencies36"DB40BE26-8C95-4AD2-BA53-C80662FEE67D-
+
+CTouch /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos/contacts.bundle
+s397179385.233217
+e397179385.288672
+r1
+xTouch
+x/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos/contacts.bundle
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection130"Touch /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos/contacts.bundled40d3cf979acb741^04e649f979acb741^---0#0#0#--285"Touch build/Release-iphoneos/contacts.bundle    cd /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule    /usr/bin/touch -c /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos/contacts.bundle36"52289F6C-2D65-45D9-BE51-03EC1FC660E8-
+

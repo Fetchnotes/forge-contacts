@@ -1,6 +1,6 @@
 {
-    "description": "sending over 30 emails", 
+    "description": "first preliminary test", 
     "name": "contacts", 
     "platform_version": "v2.0.0", 
-    "version": "0.4"
+    "version": "0.5"
 }
