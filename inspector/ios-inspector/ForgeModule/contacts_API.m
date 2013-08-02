@@ -10,6 +10,7 @@
     
     int startAt = [skip intValue];
     int amtToReturn = [limit intValue];
+
 //    int amtLeft = will difer for each
     
     
@@ -31,6 +32,12 @@
             CFRelease(addressBookCopy);
             CFRelease(queriedAddressBook);
             [task error:@"No entries in address book"];
+        }
+        if (sizeOfTotalAddressBookCopy == startAt) {
+            CFRelease(addressBook);
+            CFRelease(addressBookCopy);
+            CFRelease(queriedAddressBook);
+            [task success:@"No more contacts to grab"];
         }
         
         int amtLeft = sizeOfTotalAddressBookCopy - startAt;
