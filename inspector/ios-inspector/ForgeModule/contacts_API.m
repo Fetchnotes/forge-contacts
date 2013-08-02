@@ -21,9 +21,6 @@
 
         int sizeOfTotalAddressBookCopy = CFArrayGetCount(addressBookCopy);
         if (sizeOfTotalAddressBookCopy == 0) {
-            CFRelease(addressBook);
-            CFRelease(addressBookCopy);
-            CFRelease(queriedAddressBook);
             [task error:@"No entries in address book"];
         }
         
@@ -91,8 +88,6 @@
         
         int sizeOfqueriedAddressBook = CFArrayGetCount(queriedAddressBook);
         if (sizeOfqueriedAddressBook == 0) {
-            CFRelease(addressBook);
-            CFRelease(queriedAddressBook);
             [task error:@"No entries in address book"];
         }
         
@@ -146,8 +141,8 @@
         }
         
         if (queriedAddressBook != nil) {
-            CFRelease(addressBook);
             [task success:matchedContacts];
+            CFRelease(queriedAddressBook);
         } else {
             CFRelease(addressBook);
             [task error:nil];
