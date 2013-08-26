@@ -1,0 +1,7 @@
+[
+    {
+        "do": {
+            "add_ios_system_framework": "AddressBook.framework"
+        }
+    }
+]

@@ -11,12 +11,10 @@
 		B31B6D6F15C1467100854074 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B31B6D6E15C1467100854074 /* CoreFoundation.framework */; };
 		B37C3A5D162717A200B50A60 /* ForgeCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B37C3A5C162717A200B50A60 /* ForgeCore.framework */; };
 		B3CC61F21716ECB500A1A8EF /* contacts_API.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CC61F01716ECB500A1A8EF /* contacts_API.m */; };
-		B3CC61F41716ECBB00A1A8EF /* contacts_EventListener.m in Sources */ = {isa = PBXBuildFile; fileRef = B3CC61F31716ECBB00A1A8EF /* contacts_EventListener.m */; };
 		B3FC51F815C151E5003574D9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3FC51F715C151E5003574D9 /* UIKit.framework */; };
 		B3FC51FF15C1523D003574D9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3FC51FE15C1523D003574D9 /* CoreGraphics.framework */; };
 		B3FC524215C177EA003574D9 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3FC524115C177EA003574D9 /* AssetsLibrary.framework */; };
 		B3FC524815C17B2C003574D9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3FC524715C17B2C003574D9 /* SystemConfiguration.framework */; };
-		D863E2E217A837E6003BB4CC /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D863E2E117A837E6003BB4CC /* AddressBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,13 +25,10 @@
 		B37C3A5C162717A200B50A60 /* ForgeCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ForgeCore.framework; path = ../ForgeCore.framework; sourceTree = "<group>"; };
 		B3CC61EF1716ECB500A1A8EF /* contacts_API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contacts_API.h; sourceTree = "<group>"; };
 		B3CC61F01716ECB500A1A8EF /* contacts_API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contacts_API.m; sourceTree = "<group>"; };
-		B3CC61F11716ECB500A1A8EF /* contacts_EventListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contacts_EventListener.h; sourceTree = "<group>"; };
-		B3CC61F31716ECBB00A1A8EF /* contacts_EventListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contacts_EventListener.m; sourceTree = "<group>"; };
 		B3FC51F715C151E5003574D9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B3FC51FE15C1523D003574D9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B3FC524115C177EA003574D9 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		B3FC524715C17B2C003574D9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		D863E2E117A837E6003BB4CC /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +36,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D863E2E217A837E6003BB4CC /* AddressBook.framework in Frameworks */,
 				B3FC524815C17B2C003574D9 /* SystemConfiguration.framework in Frameworks */,
 				B3FC524215C177EA003574D9 /* AssetsLibrary.framework in Frameworks */,
 				B3FC51FF15C1523D003574D9 /* CoreGraphics.framework in Frameworks */,
@@ -65,11 +59,8 @@
 		B31B6D4315C13D5200854074 = {
 			isa = PBXGroup;
 			children = (
-				D863E2E117A837E6003BB4CC /* AddressBook.framework */,
 				B3CC61EF1716ECB500A1A8EF /* contacts_API.h */,
 				B3CC61F01716ECB500A1A8EF /* contacts_API.m */,
-				B3CC61F11716ECB500A1A8EF /* contacts_EventListener.h */,
-				B3CC61F31716ECBB00A1A8EF /* contacts_EventListener.m */,
 				B31B6D5015C13D5200854074 /* Frameworks */,
 				B31B6D4F15C13D5200854074 /* Products */,
 			);
@@ -177,7 +168,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3CC61F21716ECB500A1A8EF /* contacts_API.m in Sources */,
-				B3CC61F41716ECBB00A1A8EF /* contacts_EventListener.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

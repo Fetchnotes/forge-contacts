@@ -1,6 +1,6 @@
 {
-    "description": "first preliminary test", 
+    "description": "added device check 2", 
     "name": "contacts", 
     "platform_version": "v2.0.0", 
-    "version": "0.5"
+    "version": "1.3"
 }
