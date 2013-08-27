@@ -1,7 +1,6 @@
 #import "contacts_API.h"
 #import <AddressBook/AddressBook.h>
 
-
 @implementation contacts_API
 
 // If searchQuery is nonempty - use just the queriedAddressBook because that doesn't need to copy the entire array.
@@ -67,7 +66,13 @@
                 for (CFIndex j=0; j< ABMultiValueGetCount(phoneNumbers); j++) {
                     NSString* number = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, j);
                     NSString* label = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneNumbers, j);
-                    [contactPhoneNumbers setObject:number forKey:label];
+                    
+                    NSString *formattedLabel = [label substringWithRange:NSMakeRange(4, [label length]-4)];
+                    formattedLabel = [formattedLabel substringToIndex:[formattedLabel length] - 4];
+                    formattedLabel = [formattedLabel lowercaseString];
+                    
+                    
+                    [contactPhoneNumbers setObject:number forKey:formattedLabel];
                     CFRelease((__bridge CFTypeRef)(number));
                     CFRelease((__bridge CFTypeRef)(label));
                 }

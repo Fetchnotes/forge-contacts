@@ -1,6 +1,6 @@
 {
-    "description": "checking for permissions and alerting", 
+    "description": "regex and lowercase titles", 
     "name": "contacts", 
     "platform_version": "v2.0.0", 
-    "version": "1.4"
+    "version": "1.5"
 }
