@@ -4,11 +4,10 @@ r1
 cCheck dependencies
 cProcessPCH /var/folders/vm/hzg_64bj7sl82yhclg5q2t240000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/ForgeModule-Prefix-frbxzwhveecnrebxfflaowppbhcj/ForgeModule-Prefix.pch.pth ForgeModule-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/Objects-normal/i386/contacts_API.o /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cLibtool /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphonesimulator/libForgeModule.a normal i386
 
 N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk
-c0000000051BB6B440000000000000110
-t1371237188
+c0000000050EDEAFB0000000000000110
+t1357769467
 s272
 
 N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/System/Library/Frameworks/AddressBook.framework/AddressBook
@@ -17,28 +16,28 @@ t1366128985
 s790576
 
 N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/System/Library/Frameworks/AssetsLibrary.framework/AssetsLibrary
-c00000000516D795900000000000226E0
-t1366128985
+c0000000051B4C2A500000000000226E0
+t1370800805
 s141024
 
 N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
-c00000000516D795A0000000000228FE0
-t1366128986
+c0000000051B4C2AF0000000000228FE0
+t1370800815
 s2265056
 
 N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/System/Library/Frameworks/Foundation.framework/Foundation
-c00000000516D795B00000000003DDFA0
-t1366128987
+c0000000051B4C2BE00000000003DDFA0
+t1370800830
 s4054944
 
 N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration
-c00000000516D795E000000000006CC50
-t1366128990
+c0000000051B4C2F7000000000006CC50
+t1370800887
 s445520
 
 N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/System/Library/Frameworks/UIKit.framework/UIKit
-c00000000516D79600000000000AB6230
-t1366128992
+c0000000051B4C2FD0000000000AB6230
+t1370800893
 s11231792
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/../ForgeCore.framework/ForgeCore
@@ -152,16 +151,16 @@ t1376504946
 s187
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/Objects-normal/i386/contacts_API.o
-t1377559448
-s83052
+t2
+s0
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/Objects-normal/i386/contacts_EventListener.o
 t1375487288
 s77472
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphonesimulator/libForgeModule.a
-t1377559448
-s83312
+t1377565876
+s84216
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.h
 c0000000051F8000600000000000000CA
@@ -169,9 +168,9 @@ t1375207430
 s202
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m
-c00000000521BFB860000000000001582
-t1377565574
-s5506
+c000000005232488C0000000000001BAA
+t1379027084
+s7082
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_EventListener.h
 c00000000520BC8180000000000000089
@@ -189,12 +188,12 @@ s5077788
 
 CCheck dependencies
 r0
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies1b2b893334ccb741^b760a93334ccb741^---0#1#0#--18"Check dependencies36"45931DAB-6FD7-48CB-B0DA-E29CDC72A61F-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciese23f950e80e2b741^bd71aa0e80e2b741^---0#1#0#--18"Check dependencies36"CF70C9EA-7E79-45A1-BDFB-E1B024013059-
 
 CCompileC build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/Objects-normal/i386/contacts_API.o /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s399258675.680014
-e399258676.259866
-r1
+s400719886.679551
+e400719886.702270
+r0
 xCompileC
 xbuild/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/Objects-normal/i386/contacts_API.o
 x/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m
@@ -202,7 +201,9 @@ xnormal
 xi386
 xobjective-c
 xcom.apple.compilers.llvm.clang.1_0.compiler
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection108"Compile /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.md2e0ae3334ccb741^8885423434ccb741^---0#0#0#-19%DVTDocumentLocation2@116"file://localhost/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m0000000000000000^4147"CompileC build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/Objects-normal/i386/contacts_API.o contacts_API.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/libexec:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/local/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/usr/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/usr/local/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/local/bin:/Applications/Xcode.app/Contents/Developer/Tools:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wenum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=4.3 -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/ForgeModule.hmap -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphonesimulator/include -I. -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/DerivedSources/i386 -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/DerivedSources -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphonesimulator -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/.. -include /var/folders/vm/hzg_64bj7sl82yhclg5q2t240000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/ForgeModule-Prefix-frbxzwhveecnrebxfflaowppbhcj/ForgeModule-Prefix.pch -MMD -MT dependencies -MF /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/Objects-normal/i386/contacts_API.d --serialize-diagnostics /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/Objects-normal/i386/contacts_API.dia -c /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m -o /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/Objects-normal/i386/contacts_API.o36"C87C91CF-87D7-42BE-A8E4-D859CDFEEB30-
+ofatal error: file '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/usr/include/Availability.h' has been modified since the precompiled header was built
+o1 error generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection108"Compile /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.me161ae0e80e2b741^6ec4b30e80e2b741^-239"fatal error: file '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/usr/include/Availability.h' has been modified since the precompiled header was built1 error generated.1(36%IDEClangDiagnosticActivityLogMessage2@206"File '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk/usr/include/Availability.h' has been modified since the precompiled header was built-400719886#18446744073709551615#0#-2#27"com.apple.dt.IDE.diagnostic-29"Apple LLVM compiler 4.2 Error--0#0#0#-19%DVTDocumentLocation3@116"file://localhost/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m0000000000000000^4147"CompileC build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/Objects-normal/i386/contacts_API.o contacts_API.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/libexec:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/local/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/usr/bin:/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/usr/local/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/local/bin:/Applications/Xcode.app/Contents/Developer/Tools:/usr/bin:/bin:/usr/sbin:/sbin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wenum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.1.sdk -fexceptions -fasm-blocks -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch -mios-simulator-version-min=4.3 -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/ForgeModule.hmap -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphonesimulator/include -I. -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/DerivedSources/i386 -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/DerivedSources -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphonesimulator -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/.. -include /var/folders/vm/hzg_64bj7sl82yhclg5q2t240000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/ForgeModule-Prefix-frbxzwhveecnrebxfflaowppbhcj/ForgeModule-Prefix.pch -MMD -MT dependencies -MF /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/Objects-normal/i386/contacts_API.d --serialize-diagnostics /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/Objects-normal/i386/contacts_API.dia -c /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m -o /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/Objects-normal/i386/contacts_API.o36"99DF18C0-EDA6-442F-A748-816073AC7E5F-
 
 CCompileC build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/Objects-normal/i386/contacts_EventListener.o /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_EventListener.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s398196659.596049

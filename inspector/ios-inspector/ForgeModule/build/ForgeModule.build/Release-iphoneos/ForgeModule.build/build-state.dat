@@ -2,17 +2,14 @@ TForgeModule
 v5
 r1
 cCheck dependencies
-cProcessPCH /var/folders/vm/hzg_64bj7sl82yhclg5q2t240000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/ForgeModule-Prefix-butqqwlgcyizyaghzdksuwklystz/ForgeModule-Prefix.pch.pth ForgeModule-Prefix.pch normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cProcessPCH /var/folders/vm/hzg_64bj7sl82yhclg5q2t240000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/ForgeModule-Prefix-bmwtgtmsrtmyuidcreazeljublqx/ForgeModule-Prefix.pch.pth ForgeModule-Prefix.pch normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cProcessPCH /var/folders/vm/hzg_64bj7sl82yhclg5q2t240000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/ForgeModule-Prefix-butqqwlgcyizyaghzdksuwklystz/ForgeModule-Prefix.pch.pth ForgeModule-Prefix.pch normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_API.o /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7s/contacts_API.o /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cLibtool /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7s/libForgeModule.a normal armv7s
-cLibtool /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/libForgeModule.a normal armv7
-cCreateUniversalBinary /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos/libForgeModule.a normal "armv7 armv7s"
 
 N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk
-c0000000051BB6AD90000000000000110
-t1371237081
+c0000000050ED385D0000000000000110
+t1357723741
 s272
 
 N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/AddressBook.framework/AddressBook
@@ -21,28 +18,28 @@ t1366128958
 s1352480
 
 N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/AssetsLibrary.framework/AssetsLibrary
-c00000000516D793E000000000003AE00
-t1366128958
+c0000000051B4C1D5000000000003AE00
+t1370800597
 s241152
 
 N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
-c00000000516D793F0000000000322700
-t1366128959
+c0000000051B4C1D90000000000322700
+t1370800601
 s3286784
 
 N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/Foundation.framework/Foundation
-c00000000516D7940000000000062AD10
-t1366128960
+c0000000051B4C1DC000000000062AD10
+t1370800604
 s6466832
 
 N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration
-c00000000516D794100000000000CAFB0
-t1366128961
+c0000000051B4C1E400000000000CAFB0
+t1370800612
 s831408
 
 N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/System/Library/Frameworks/UIKit.framework/UIKit
-c00000000516D794400000000011BCDF0
-t1366128964
+c0000000051B4C1E800000000011BCDF0
+t1370800616
 s18599408
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/../ForgeCore.framework/ForgeCore
@@ -156,16 +153,16 @@ t1376504945
 s181
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_API.o
-t1377559446
-s83400
+t2
+s0
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_EventListener.o
 t1376087079
 s77608
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/libForgeModule.a
-t1377559446
-s83656
+t1377565874
+s84688
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7s/ForgeModule.LinkFileList
 c00000000520BCC7100000000000000B6
@@ -173,20 +170,20 @@ t1376504945
 s182
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7s/contacts_API.o
-t1377559446
-s83496
+t2
+s0
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7s/contacts_EventListener.o
 t1376087079
 s77608
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7s/libForgeModule.a
-t1377559446
-s83752
+t1377565874
+s84688
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos/libForgeModule.a
-t1377559446
-s167456
+t1377565874
+s169424
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.h
 c0000000051F8000600000000000000CA
@@ -194,9 +191,9 @@ t1375207430
 s202
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m
-c00000000521BFB860000000000001582
-t1377565574
-s5506
+c000000005232488C0000000000001BAA
+t1379027084
+s7082
 
 N/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_EventListener.h
 c00000000520BC8180000000000000089
@@ -226,12 +223,12 @@ s0
 
 CCheck dependencies
 r0
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies8cbe123034ccb741^e696923034ccb741^---0#1#0#--18"Check dependencies36"11E44C80-7F50-4BCE-B05A-31EBA7E57966-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies7c0b670d80e2b741^bef8820d80e2b741^---0#1#0#--18"Check dependencies36"C437EB9C-EB7C-44E0-96C7-1F9E1C526D0C-
 
 CCompileC build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_API.o /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s399258672.579338
-e399258674.451779
-r1
+s400719885.527882
+e400719885.554379
+r0
 xCompileC
 xbuild/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_API.o
 x/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m
@@ -239,7 +236,9 @@ xnormal
 xarmv7
 xobjective-c
 xcom.apple.compilers.llvm.clang.1_0.compiler
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection108"Compile /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m37c7953034ccb741^6cb5733234ccb741^---0#0#0#-19%DVTDocumentLocation2@116"file://localhost/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m0000000000000000^3124"CompileC build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_API.o contacts_API.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wenum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -miphoneos-version-min=4.3 -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/ForgeModule.hmap -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos/include -I. -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/DerivedSources/armv7 -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/DerivedSources -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/.. -include /var/folders/vm/hzg_64bj7sl82yhclg5q2t240000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/ForgeModule-Prefix-bmwtgtmsrtmyuidcreazeljublqx/ForgeModule-Prefix.pch -MMD -MT dependencies -MF /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_API.d --serialize-diagnostics /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_API.dia -c /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m -o /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_API.o36"C858608D-58E0-48F1-8C09-59A085D78D03-
+ofatal error: file '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/include/Availability.h' has been modified since the precompiled header was built
+o1 error generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection108"Compile /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m1fbf870d80e2b741^f4e18d0d80e2b741^-225"fatal error: file '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/include/Availability.h' has been modified since the precompiled header was built1 error generated.1(36%IDEClangDiagnosticActivityLogMessage2@192"File '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/include/Availability.h' has been modified since the precompiled header was built-400719885#18446744073709551615#0#-2#27"com.apple.dt.IDE.diagnostic-29"Apple LLVM compiler 4.2 Error--0#0#0#-19%DVTDocumentLocation3@116"file://localhost/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m0000000000000000^3124"CompileC build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_API.o contacts_API.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wenum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -miphoneos-version-min=4.3 -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/ForgeModule.hmap -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos/include -I. -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/DerivedSources/armv7 -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/DerivedSources -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/.. -include /var/folders/vm/hzg_64bj7sl82yhclg5q2t240000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/ForgeModule-Prefix-bmwtgtmsrtmyuidcreazeljublqx/ForgeModule-Prefix.pch -MMD -MT dependencies -MF /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_API.d --serialize-diagnostics /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_API.dia -c /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m -o /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_API.o36"B43786CC-4E10-4746-A6E5-9163446209CD-
 
 CCompileC build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_EventListener.o /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_EventListener.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s398196654.847232
@@ -255,9 +254,9 @@ xcom.apple.compilers.llvm.clang.1_0.compiler
 lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection118"Compile /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_EventListener.mcb86d9aeffbbb741^b07165b1ffbbb741^---0#0#0#-19%DVTDocumentLocation2@126"file://localhost/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_EventListener.m0000000000000000^3184"CompileC build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_EventListener.o contacts_EventListener.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wenum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -miphoneos-version-min=4.3 -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/ForgeModule.hmap -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos/include -I. -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/DerivedSources/armv7 -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/DerivedSources -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/.. -include /var/folders/vm/hzg_64bj7sl82yhclg5q2t240000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/ForgeModule-Prefix-bmwtgtmsrtmyuidcreazeljublqx/ForgeModule-Prefix.pch -MMD -MT dependencies -MF /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_EventListener.d --serialize-diagnostics /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_EventListener.dia -c /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_EventListener.m -o /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7/contacts_EventListener.o36"37AC5D1A-3316-44B2-A621-4D8A925EA3CD-
 
 CCompileC build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7s/contacts_API.o /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s399258672.579339
-e399258674.451781
-r1
+s400719885.527908
+e400719885.554542
+r0
 xCompileC
 xbuild/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7s/contacts_API.o
 x/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m
@@ -265,7 +264,9 @@ xnormal
 xarmv7s
 xobjective-c
 xcom.apple.compilers.llvm.clang.1_0.compiler
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection108"Compile /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m5cc6953034ccb741^6aa6733234ccb741^---0#0#0#-19%DVTDocumentLocation2@116"file://localhost/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m0000000000000000^3131"CompileC build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7s/contacts_API.o contacts_API.m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7s -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wenum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -miphoneos-version-min=4.3 -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/ForgeModule.hmap -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos/include -I. -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/DerivedSources/armv7s -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/DerivedSources -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/.. -include /var/folders/vm/hzg_64bj7sl82yhclg5q2t240000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/ForgeModule-Prefix-butqqwlgcyizyaghzdksuwklystz/ForgeModule-Prefix.pch -MMD -MT dependencies -MF /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7s/contacts_API.d --serialize-diagnostics /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7s/contacts_API.dia -c /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m -o /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7s/contacts_API.o36"FA19E1FD-5CA4-47C9-8E7C-7E146158137A-
+ofatal error: file '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/include/Availability.h' has been modified since the precompiled header was built
+o1 error generated.
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection108"Compile /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.mbabe870d80e2b741^2ae58d0d80e2b741^-225"fatal error: file '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/include/Availability.h' has been modified since the precompiled header was built1 error generated.1(36%IDEClangDiagnosticActivityLogMessage2@192"File '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk/usr/include/Availability.h' has been modified since the precompiled header was built-400719885#18446744073709551615#0#-2#27"com.apple.dt.IDE.diagnostic-29"Apple LLVM compiler 4.2 Error--0#0#0#-19%DVTDocumentLocation3@116"file://localhost/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m0000000000000000^3131"CompileC build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7s/contacts_API.o contacts_API.m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule    setenv LANG en_US.US-ASCII    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7s -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wconstant-conversion -Wint-conversion -Wenum-conversion -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.1.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -miphoneos-version-min=4.3 -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/ForgeModule.hmap -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos/include -I. -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/DerivedSources/armv7s -I/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/DerivedSources -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphoneos -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule -F/Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/.. -include /var/folders/vm/hzg_64bj7sl82yhclg5q2t240000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/ForgeModule-Prefix-butqqwlgcyizyaghzdksuwklystz/ForgeModule-Prefix.pch -MMD -MT dependencies -MF /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7s/contacts_API.d --serialize-diagnostics /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7s/contacts_API.dia -c /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m -o /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7s/contacts_API.o36"C548FF47-F2B6-4C22-BD6A-7259AF33052F-
 
 CCompileC build/ForgeModule.build/Release-iphoneos/ForgeModule.build/Objects-normal/armv7s/contacts_EventListener.o /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_EventListener.m normal armv7s objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s398196654.846628
