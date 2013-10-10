@@ -3,34 +3,28 @@
 
 @implementation contacts_API
 
-+ (void)getContacts:(ForgeTask*)task Query:(NSString*)searchQuery Skip:(NSNumber*)skip Limit:(NSNumber*)limit {
++ (void)getContactsPermission:(ForgeTask*)task {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Hi there!"
+                                                    message:@"We're about to request access to your contacts. That way, we can let you share with people who don't even have Fetchnotes!\n\nFear not — your notes are always private unless you explicitly share them."
+                                                   delegate:self
+                                          cancelButtonTitle:@"Got it"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
 
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    if([defaults objectForKey:@"display-first-access-alert"] == nil || [defaults objectForKey:@"display-first-access-alert"] == YES) {
-        
-        [defaults setBool:NO forKey:@"display-first-access-alert"];
-        [defaults synchronize];
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                        message:@"Want to share notes with people who don't use Fetchnotes? We'll need access to your contacts. Don't worry, we'll never share anything without your permission."
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Got it"
-                                              otherButtonTitles:nil];
-        [alert show];
-    }
-    
++ (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     dispatch_queue_t queue;
     
     queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
-    
-        int startAt = [skip intValue];
-        int amtToReturn = [limit intValue];
+        
+        int startAt = [[NSNumber numberWithInt:0] intValue];
+        int amtToReturn = [[NSNumber numberWithInt:0] intValue];
         
         ABAddressBookRef addressBook = ABAddressBookCreate();
         CFArrayRef queriedAddressBook = ABAddressBookCopyPeopleWithName(addressBook,
-                                                            (__bridge CFStringRef)searchQuery);
+                                                                        (__bridge CFStringRef)[NSString stringWithFormat:@"a"]);
         
         __block BOOL accessGranted = NO;
         if (ABAddressBookRequestAccessWithCompletion != NULL) { // we're on iOS 6
@@ -47,13 +41,10 @@
         }
         
         if (accessGranted) {
-                
+            
             NSMutableArray *matchedContacts = [[NSMutableArray alloc] init];
             
             int sizeOfqueriedAddressBook = CFArrayGetCount(queriedAddressBook);
-            if (sizeOfqueriedAddressBook == 0) {
-                [task error:@"No entries in address book"];
-            }
             
             int amtLeft = sizeOfqueriedAddressBook - startAt;
             
@@ -66,7 +57,7 @@
                 }
                 
                 int stopAt = amtToReturn + startAt;
-            
+                
                 for (int i = startAt; i < stopAt; i++) {
                     NSString * contactFirstName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(queriedAddressBook, i), kABPersonFirstNameProperty);
                     NSString * contactLastName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex(queriedAddressBook, i), kABPersonLastNameProperty);
@@ -78,7 +69,7 @@
                     for (CFIndex j=0; j < ABMultiValueGetCount(emails); j++) {
                         NSString* email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(emails, j);
                         [contactEmails addObject:email];
-                        CFRelease((__bridge CFTypeRef)(email));                
+                        CFRelease((__bridge CFTypeRef)(email));
                     }
                     
                     ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
@@ -86,12 +77,7 @@
                         NSString* number = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, j);
                         NSString* label = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneNumbers, j);
                         
-                        NSString *formattedLabel = [label substringWithRange:NSMakeRange(4, [label length]-4)];
-                        formattedLabel = [formattedLabel substringToIndex:[formattedLabel length] - 4];
-                        formattedLabel = [formattedLabel lowercaseString];
-                        
-                        
-                        [contactPhoneNumbers setObject:number forKey:formattedLabel];
+                        [contactPhoneNumbers setObject:number forKey:label];
                         CFRelease((__bridge CFTypeRef)(number));
                         CFRelease((__bridge CFTypeRef)(label));
                     }
@@ -101,9 +87,9 @@
                                              contactFirstName, @"firstName",
                                              contactLastName, @"lastName",
                                              contactEmails, @"email",
-                                             contactPhoneNumbers,@"phone",
+                                             contactPhoneNumbers, @"phone",
                                              nil];
-
+                    
                     [matchedContacts addObject:contact];
                     CFRelease(emails);
                     CFRelease(phoneNumbers);
@@ -111,26 +97,120 @@
             }
             
             if (queriedAddressBook != nil) {
-                [task success:matchedContacts];
                 CFRelease(queriedAddressBook);
             } else {
                 CFRelease(addressBook);
-                [task error:nil];
             }
         }
+    });
+}
+
++ (void)getContacts:(ForgeTask*)task Query:(NSString*)searchQuery Skip:(NSNumber*)skip Limit:(NSNumber*)limit {
+    
+    dispatch_queue_t queue;
+    
+    queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+    
+        CFErrorRef myError = NULL;
+        __block int startAt = [skip intValue];
+        __block int amtToReturn = [limit intValue];
+        ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, &myError);
         
-        else if ([defaults objectForKey:@"display-previously-denied-access-alert"] == nil || [defaults objectForKey:@"display-previously-denied-access-alert"] == YES) {
-            
-            [defaults setBool:NO forKey:@"display-previously-denied-access-alert"];
-            [defaults synchronize];
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                            message:@"Want to share notes with people who don't use Fetchnotes? We'll need access to your contacts. Don't worry, we'll never share anything without your permission.\n\n1) Open up the 'Settings' app\n2) Tap on 'Privacy'\n3) Tap 'Contacts'\n4) Find Fetchnotes on the list and switch the toggle to 'On'\n"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Got it"
-                                                  otherButtonTitles:nil];
-            [alert show];
-        }
+        ABAddressBookRequestAccessWithCompletion(addressBook,
+                                                 ^(bool granted, CFErrorRef error) {
+                                                     if (granted) {
+                                                         NSArray *queriedAddressBook = CFBridgingRelease(
+                                                                                                ABAddressBookCopyPeopleWithName(addressBook, (__bridge CFStringRef)(searchQuery))
+                                                                                                );
+                                                         NSMutableArray *matchedContacts = [[NSMutableArray alloc] init];
+                                                         
+                                                         int sizeOfqueriedAddressBook = CFArrayGetCount((__bridge CFArrayRef)(queriedAddressBook));
+                                                         if (sizeOfqueriedAddressBook == 0) {
+                                                             [task error:@"No entries in address book"];
+                                                         }
+
+                                                         int amtLeft = sizeOfqueriedAddressBook - startAt;
+                                                         
+                                                         if (amtLeft > 0) {
+                                                             if (amtToReturn > sizeOfqueriedAddressBook) {
+                                                                 amtToReturn = sizeOfqueriedAddressBook;
+                                                             }
+                                                             if (amtLeft < amtToReturn) {
+                                                                 amtToReturn = amtLeft;
+                                                             }
+
+                                                             int stopAt = amtToReturn + startAt;
+
+                                                             for (int i = startAt; i < stopAt; i++) {
+                                                                 NSString * contactFirstName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i), kABPersonFirstNameProperty);
+                                                                 NSString * contactLastName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i), kABPersonLastNameProperty);
+                                                                 NSMutableDictionary *contactPhoneNumbers = [[NSMutableDictionary alloc] init];
+                                                                 ABRecordRef person = CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i);
+                                                                 NSMutableArray *contactEmails = [[NSMutableArray alloc] init];
+                                                                 
+                                                                 ABMultiValueRef emails = ABRecordCopyValue(person, kABPersonEmailProperty);
+                                                                 for (CFIndex j=0; j < ABMultiValueGetCount(emails); j++) {
+                                                                     NSString* email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(emails, j);
+                                                                     [contactEmails addObject:email];
+                                                                     CFRelease((__bridge CFTypeRef)(email));
+                                                                 }
+                                                                 
+                                                                 ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
+                                                                 for (CFIndex j=0; j< ABMultiValueGetCount(phoneNumbers); j++) {
+                                                                     NSString* number = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, j);
+                                                                     NSString* label = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneNumbers, j);
+                                                                     
+                                                                     if (label)
+                                                                         [contactPhoneNumbers setObject:number forKey:label];
+                                                                     else
+                                                                         [contactPhoneNumbers setObject:number forKey:@"other"];
+                                                                     CFRelease((__bridge CFTypeRef)(number));
+                                                                 }
+                                                                 
+                                                                 if ([contactPhoneNumbers count] != 0 || contactEmails.count != 0) {
+                                                                     if(ABPersonHasImageData(person)) {
+                                                                         UIImage* contactThumbnail = [UIImage imageWithData:(__bridge NSData *)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)];
+                                                                         NSDictionary *contact = [NSDictionary
+                                                                                                  dictionaryWithObjectsAndKeys:
+                                                                                                  contactFirstName, @"firstName",
+                                                                                                  contactLastName, @"lastName",
+                                                                                                  contactEmails, @"email",
+                                                                                                  contactPhoneNumbers, @"phone",
+                                                                                                  contactThumbnail, @"thumbnail",
+                                                                                                  nil];
+                                                                         
+                                                                         [matchedContacts addObject:contact];
+                                                                     } else {
+                                                                         NSDictionary *contact = [NSDictionary
+                                                                                                  dictionaryWithObjectsAndKeys:
+                                                                                                  contactFirstName, @"firstName",
+                                                                                                  contactLastName, @"lastName",
+                                                                                                  contactEmails, @"email",
+                                                                                                  contactPhoneNumbers, @"phone",
+                                                                                                  nil];
+                                                                         
+                                                                         [matchedContacts addObject:contact];
+                                                                     }
+                                                                 }
+
+                                                                 CFRelease(emails);
+                                                                 CFRelease(phoneNumbers);
+//                                                                 CFRelease(contactThumbnail);
+                                                             }
+                                                         }
+
+                                                         if (queriedAddressBook != nil) {
+                                                             [task success:matchedContacts];
+                                                         } else {
+                                                             CFRelease(addressBook);
+                                                             [task error:nil];
+                                                         }
+                                                     }
+                                                     CFRelease(addressBook);
+                                                 });
+
+        
     });
 }
 
