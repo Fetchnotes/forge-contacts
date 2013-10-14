@@ -1,5 +1,6 @@
 #import "contacts_API.h"
 #import <AddressBook/AddressBook.h>
+#import <JBDeviceOwner.h>
 
 @implementation contacts_API
 
@@ -10,6 +11,22 @@
                                           cancelButtonTitle:@"Got it"
                                           otherButtonTitles:nil];
     [alert show];
+}
+
++ (void)getOwner:(ForgeTask*)task {
+    JBDeviceOwner *owner = [UIDevice currentDevice].owner;
+    
+    if (owner != nil) {
+        NSDictionary *ownerDic = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  owner.firstName, @"firstName",
+                                  owner.lastName, @"lastName",
+                                  owner.email, @"email",
+                                  owner.phone, @"phone",
+                                  nil];
+        [task success:ownerDic];
+    } else {
+        [task error:@"No match"];
+    }
 }
 
 + (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -118,99 +135,97 @@
         ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, &myError);
         
         ABAddressBookRequestAccessWithCompletion(addressBook,
-                                                 ^(bool granted, CFErrorRef error) {
-                                                     if (granted) {
-                                                         NSArray *queriedAddressBook = CFBridgingRelease(
-                                                                                                ABAddressBookCopyPeopleWithName(addressBook, (__bridge CFStringRef)(searchQuery))
-                                                                                                );
-                                                         NSMutableArray *matchedContacts = [[NSMutableArray alloc] init];
-                                                         
-                                                         int sizeOfqueriedAddressBook = CFArrayGetCount((__bridge CFArrayRef)(queriedAddressBook));
-                                                         if (sizeOfqueriedAddressBook == 0) {
-                                                             [task error:@"No entries in address book"];
-                                                         }
+         ^(bool granted, CFErrorRef error) {
+             if (granted) {
+                 NSArray *queriedAddressBook = CFBridgingRelease(
+                                                        ABAddressBookCopyPeopleWithName(addressBook, (__bridge CFStringRef)(searchQuery))
+                                                        );
+                 NSMutableArray *matchedContacts = [[NSMutableArray alloc] init];
+                 
+                 int sizeOfqueriedAddressBook = CFArrayGetCount((__bridge CFArrayRef)(queriedAddressBook));
+                 if (sizeOfqueriedAddressBook == 0) {
+                     [task error:@"No entries in address book"];
+                 }
 
-                                                         int amtLeft = sizeOfqueriedAddressBook - startAt;
-                                                         
-                                                         if (amtLeft > 0) {
-                                                             if (amtToReturn > sizeOfqueriedAddressBook) {
-                                                                 amtToReturn = sizeOfqueriedAddressBook;
-                                                             }
-                                                             if (amtLeft < amtToReturn) {
-                                                                 amtToReturn = amtLeft;
-                                                             }
+                 int amtLeft = sizeOfqueriedAddressBook - startAt;
+                 
+                 if (amtLeft > 0) {
+                     if (amtToReturn > sizeOfqueriedAddressBook) {
+                         amtToReturn = sizeOfqueriedAddressBook;
+                     }
+                     if (amtLeft < amtToReturn) {
+                         amtToReturn = amtLeft;
+                     }
 
-                                                             int stopAt = amtToReturn + startAt;
+                     int stopAt = amtToReturn + startAt;
 
-                                                             for (int i = startAt; i < stopAt; i++) {
-                                                                 NSString * contactFirstName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i), kABPersonFirstNameProperty);
-                                                                 NSString * contactLastName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i), kABPersonLastNameProperty);
-                                                                 NSMutableDictionary *contactPhoneNumbers = [[NSMutableDictionary alloc] init];
-                                                                 ABRecordRef person = CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i);
-                                                                 NSMutableArray *contactEmails = [[NSMutableArray alloc] init];
-                                                                 
-                                                                 ABMultiValueRef emails = ABRecordCopyValue(person, kABPersonEmailProperty);
-                                                                 for (CFIndex j=0; j < ABMultiValueGetCount(emails); j++) {
-                                                                     NSString* email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(emails, j);
-                                                                     [contactEmails addObject:email];
-                                                                     CFRelease((__bridge CFTypeRef)(email));
-                                                                 }
-                                                                 
-                                                                 ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
-                                                                 for (CFIndex j=0; j< ABMultiValueGetCount(phoneNumbers); j++) {
-                                                                     NSString* number = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, j);
-                                                                     NSString* label = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneNumbers, j);
-                                                                     
-                                                                     if (label)
-                                                                         [contactPhoneNumbers setObject:number forKey:label];
-                                                                     else
-                                                                         [contactPhoneNumbers setObject:number forKey:@"other"];
-                                                                     CFRelease((__bridge CFTypeRef)(number));
-                                                                 }
-                                                                 
-                                                                 if ([contactPhoneNumbers count] != 0 || contactEmails.count != 0) {
-                                                                     if(ABPersonHasImageData(person)) {
-                                                                         UIImage* contactThumbnail = [UIImage imageWithData:(__bridge NSData *)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)];
-                                                                         NSDictionary *contact = [NSDictionary
-                                                                                                  dictionaryWithObjectsAndKeys:
-                                                                                                  contactFirstName, @"firstName",
-                                                                                                  contactLastName, @"lastName",
-                                                                                                  contactEmails, @"email",
-                                                                                                  contactPhoneNumbers, @"phone",
-                                                                                                  contactThumbnail, @"thumbnail",
-                                                                                                  nil];
-                                                                         
-                                                                         [matchedContacts addObject:contact];
-                                                                     } else {
-                                                                         NSDictionary *contact = [NSDictionary
-                                                                                                  dictionaryWithObjectsAndKeys:
-                                                                                                  contactFirstName, @"firstName",
-                                                                                                  contactLastName, @"lastName",
-                                                                                                  contactEmails, @"email",
-                                                                                                  contactPhoneNumbers, @"phone",
-                                                                                                  nil];
-                                                                         
-                                                                         [matchedContacts addObject:contact];
-                                                                     }
-                                                                 }
+                     for (int i = startAt; i < stopAt; i++) {
+                         NSString * contactFirstName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i), kABPersonFirstNameProperty);
+                         NSString * contactLastName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i), kABPersonLastNameProperty);
+                         NSMutableDictionary *contactPhoneNumbers = [[NSMutableDictionary alloc] init];
+                         ABRecordRef person = CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i);
+                         NSMutableArray *contactEmails = [[NSMutableArray alloc] init];
+                         
+                         ABMultiValueRef emails = ABRecordCopyValue(person, kABPersonEmailProperty);
+                         for (CFIndex j=0; j < ABMultiValueGetCount(emails); j++) {
+                             NSString* email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(emails, j);
+                             [contactEmails addObject:email];
+                             CFRelease((__bridge CFTypeRef)(email));
+                         }
+                         
+                         ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
+                         for (CFIndex j=0; j< ABMultiValueGetCount(phoneNumbers); j++) {
+                             NSString* number = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, j);
+                             NSString* label = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneNumbers, j);
+                             
+                             if (label)
+                                 [contactPhoneNumbers setObject:number forKey:label];
+                             else
+                                 [contactPhoneNumbers setObject:number forKey:@"other"];
+                             CFRelease((__bridge CFTypeRef)(number));
+                         }
+                         
+        //                                                                 if ([contactPhoneNumbers count] != 0 || contactEmails.count != 0) {
+        //                                                                     if(ABPersonHasImageData(person)) {
+        //                                                                         UIImage* contactThumbnail = [UIImage imageWithData:(__bridge NSData *)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)];
+        //                                                                         NSDictionary *contact = [NSDictionary
+        //                                                                                                  dictionaryWithObjectsAndKeys:
+        //                                                                                                  contactFirstName, @"firstName",
+        //                                                                                                  contactLastName, @"lastName",
+        //                                                                                                  contactEmails, @"email",
+        //                                                                                                  contactPhoneNumbers, @"phone",
+        //                                                                                                  contactThumbnail, @"thumbnail",
+        //                                                                                                  nil];
+        //                                                                         
+        //                                                                         [matchedContacts addObject:contact];
+        //                                                                     } else {
+                         NSDictionary *contact = [NSDictionary
+                                                  dictionaryWithObjectsAndKeys:
+                                                  contactFirstName, @"firstName",
+                                                  contactLastName, @"lastName",
+                                                  contactEmails, @"email",
+                                                  contactPhoneNumbers, @"phone",
+                                                  nil];
+                         
+                         [matchedContacts addObject:contact];
+        //                                                                     }
+                         }
 
-                                                                 CFRelease(emails);
-                                                                 CFRelease(phoneNumbers);
-//                                                                 CFRelease(contactThumbnail);
-                                                             }
-                                                         }
+                         CFRelease(emails);
+                         CFRelease(phoneNumbers);
+        //                                                                 CFRelease(contactThumbnail);
+                     }
+                 }
 
-                                                         if (queriedAddressBook != nil) {
-                                                             [task success:matchedContacts];
-                                                         } else {
-                                                             CFRelease(addressBook);
-                                                             [task error:nil];
-                                                         }
-                                                     }
-                                                     CFRelease(addressBook);
-                                                 });
-
-        
+                 if (queriedAddressBook != nil) {
+                     [task success:matchedContacts];
+                 } else {
+                     CFRelease(addressBook);
+                     [task error:nil];
+                 }
+             }
+             CFRelease(addressBook);
+         });
     });
 }
 
