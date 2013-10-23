@@ -122,19 +122,6 @@
                          }
                          
                          if ([contactPhoneNumbers count] != 0 || contactEmails.count != 0) {
-//                         if(ABPersonHasImageData(person)) {
-//                             UIImage* contactThumbnail = [UIImage imageWithData:(__bridge NSData *)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)];
-//                             NSDictionary *contact = [NSDictionary
-//                                                      dictionaryWithObjectsAndKeys:
-//                                                      contactFirstName, @"firstName",
-//                                                      contactLastName, @"lastName",
-//                                                      contactEmails, @"email",
-//                                                      contactPhoneNumbers, @"phone",
-//                                                      contactThumbnail, @"thumbnail",
-//                                                      nil];
-//                             
-//                             [matchedContacts addObject:contact];
-//                         } else {
                              NSDictionary *contact = [NSDictionary
                                                       dictionaryWithObjectsAndKeys:
                                                       contactFirstName, @"firstName",
@@ -144,12 +131,10 @@
                                                       nil];
                              
                              [matchedContacts addObject:contact];
-//                             }
                          }
 
                          CFRelease(emails);
                          CFRelease(phoneNumbers);
-//                         CFRelease(contactThumbnail);
                      }
                  }
 
@@ -181,7 +166,5 @@
         [task error:@"No match"];
     }
 }
-
-+ (void)getOwnerPic
 
 @end
