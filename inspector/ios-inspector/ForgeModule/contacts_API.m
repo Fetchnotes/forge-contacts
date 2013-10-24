@@ -140,7 +140,7 @@
                      [task error:nil];
                  }
              } else {
-                 [task error:nil];
+                 [task error:@"Rejected"];
              }
          });
     });
