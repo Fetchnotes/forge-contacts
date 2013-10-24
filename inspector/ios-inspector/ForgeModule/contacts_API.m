@@ -13,6 +13,16 @@
     [alert show];
 }
 
++ (void)getContactsInstructions:(ForgeTask*)task {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Hi there!"
+                                                    message:@"Want to share notes with people who don't use Fetchnotes? We'll need access to your contacts. Don't worry, we never share without your permission.\n\n1) Open up the 'Settings' app\n2) Tap on 'Privacy'\n3) Tap 'Contacts'\n4) Go to Fetchnotes, and switch the toggle to 'On'"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Got it"
+                                          otherButtonTitles:nil];
+    
+    [alert show];
+}
+
 + (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     dispatch_queue_t queue;
@@ -39,11 +49,6 @@
         }
 
         if (accessGranted) {
-            
-            NSMutableArray *matchedContacts = [[NSMutableArray alloc] init];
-            
-            int sizeOfqueriedAddressBook = CFArrayGetCount(queriedAddressBook);
-            
             if (queriedAddressBook != nil) {
                 CFRelease(queriedAddressBook);
             } else {

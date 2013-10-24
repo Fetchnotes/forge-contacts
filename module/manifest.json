@@ -1,6 +1,6 @@
 {
-    "description": "Status rejected",
+    "description": "Request Instructions call",
     "name": "contacts",
     "platform_version": "v2.0.0",
-    "version": "6.4"
+    "version": "6.5"
 }
