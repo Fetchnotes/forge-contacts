@@ -1,6 +1,6 @@
 {
-    "description": "Cleanup",
+    "description": "Remove ref removal",
     "name": "contacts",
     "platform_version": "v2.0.0",
-    "version": "5.7"
+    "version": "6.3"
 }

@@ -20,9 +20,6 @@
     queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(queue, ^{
         
-        int startAt = [[NSNumber numberWithInt:0] intValue];
-        int amtToReturn = [[NSNumber numberWithInt:0] intValue];
-        
         ABAddressBookRef addressBook = ABAddressBookCreate();
         CFArrayRef queriedAddressBook = ABAddressBookCopyPeopleWithName(addressBook,
                                                                         (__bridge CFStringRef)[NSString stringWithFormat:@"a"]);
@@ -40,14 +37,12 @@
         else { // we're on iOS 5 or older
             accessGranted = YES;
         }
-        
+
         if (accessGranted) {
             
             NSMutableArray *matchedContacts = [[NSMutableArray alloc] init];
             
             int sizeOfqueriedAddressBook = CFArrayGetCount(queriedAddressBook);
-            
-            int amtLeft = sizeOfqueriedAddressBook - startAt;
             
             if (queriedAddressBook != nil) {
                 CFRelease(queriedAddressBook);
@@ -144,8 +139,9 @@
                      CFRelease(addressBook);
                      [task error:nil];
                  }
+             } else {
+                 [task error:nil];
              }
-             CFRelease(addressBook);
          });
     });
 }
