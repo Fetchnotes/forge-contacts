@@ -5,4 +5,7 @@
 // There is no requirement to declare your API methods in this file,
 // unless you wish to call them from other native code.
 
+//@property (strong, nonatomic, readonly) NSString *email;
+//- (NSString*)sanitizeName:(NSString *)name;
+
 @end

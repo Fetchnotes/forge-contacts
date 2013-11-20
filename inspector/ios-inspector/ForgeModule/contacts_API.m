@@ -4,6 +4,11 @@
 
 @implementation contacts_API
 
+- (NSString*)sanitizeName:(NSString *)name {
+    if ([name length] == 0) return @"";
+    else return name;
+}
+
 + (void)getContactsPermission:(ForgeTask*)task {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Hi there!"
                                                     message:@"We're about to request access to your contacts. That way, we can let you share with people who don't even have Fetchnotes!\n\nFear not — your notes are always private unless you explicitly share them."
@@ -98,6 +103,7 @@
                      for (int i = startAt; i < stopAt; i++) {
                          NSString * contactFirstName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i), kABPersonFirstNameProperty);
                          NSString * contactLastName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i), kABPersonLastNameProperty);
+                         
                          NSMutableDictionary *contactPhoneNumbers = [[NSMutableDictionary alloc] init];
                          ABRecordRef person = CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i);
                          NSMutableArray *contactEmails = [[NSMutableArray alloc] init];
