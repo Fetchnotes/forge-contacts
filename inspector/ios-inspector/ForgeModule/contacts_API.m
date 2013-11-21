@@ -4,10 +4,10 @@
 
 @implementation contacts_API
 
-- (NSString*)sanitizeName:(NSString *)name {
-    if ([name length] == 0) return @"";
-    else return name;
-}
+//- (NSString*)sanitizeName:(NSString *)name {
+//    if ([name length] == 0) return @"";
+//    else return name;
+//}
 
 + (void)getContactsPermission:(ForgeTask*)task {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Hi there!"
@@ -101,8 +101,15 @@
                      int stopAt = amtToReturn + startAt;
 
                      for (int i = startAt; i < stopAt; i++) {
-                         NSString * contactFirstName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i), kABPersonFirstNameProperty);
-                         NSString * contactLastName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i), kABPersonLastNameProperty);
+                         NSString *contactFirstName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i), kABPersonFirstNameProperty);
+                         NSString *contactLastName = (__bridge NSString *)ABRecordCopyValue( CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i), kABPersonLastNameProperty);
+                         
+//                         self.contactFirstName = contactFirstName;
+//                         [contactFirstName sanitizeName];
+//                         [contacts_API.contactFirstName sanitizeName];
+                         
+                         if ([contactFirstName length] == 0) contactFirstName = @"";
+                         if ([contactLastName length] == 0) contactLastName = @"";  
                          
                          NSMutableDictionary *contactPhoneNumbers = [[NSMutableDictionary alloc] init];
                          ABRecordRef person = CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i);

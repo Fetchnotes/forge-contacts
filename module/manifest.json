@@ -1,6 +1,6 @@
 {
-    "description": "Request Instructions call",
+    "description": "Sanitize first & last name",
     "name": "contacts",
     "platform_version": "v2.0.0",
-    "version": "2.5"
+    "version": "6.6"
 }
