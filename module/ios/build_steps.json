@@ -1,7 +1,11 @@
 [
     {
         "do": {
-            "add_ios_system_framework": "AddressBook.framework"
+            "add_ios_system_framework": "AddressBook.framework",
+            "set_in_info_plist": {
+                "key": "NSContactsUsageDescription",
+                "value": "This allows you to share notes with people who don't even have Fetchnotes!\n\nYour notes are always private unless you explicitly share them & we don't bulk upload your contacts to our servers."
+            }
         }
     }
 ]

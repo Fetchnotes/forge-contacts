@@ -11,10 +11,10 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
-		<key>02ad4ba5-8ac3-4941-a1db-9ae34f8291c7build</key>
+		<key>681b1afb-ee7e-45d6-bd34-ff764f555821build</key>
 		<dict>
 			<key>fileRef</key>
-			<string>02ad4ba5-8ac3-4941-a1db-9ae34f8291c7file</string>
+			<string>681b1afb-ee7e-45d6-bd34-ff764f555821file</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -25,7 +25,7 @@
 				</array>
 			</dict>
 		</dict>
-		<key>02ad4ba5-8ac3-4941-a1db-9ae34f8291c7file</key>
+		<key>681b1afb-ee7e-45d6-bd34-ff764f555821file</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXFileReference</string>
@@ -610,7 +610,7 @@ mv build/Release-iphoneos/*.bundle ../build 2&gt;&gt;/dev/null || echo "No bundl
 				<string>B3FC517E15C14B2A003574D9</string>
 				<string>B3FC518015C14B2A003574D9</string>
 				<string>B3FC519315C14B35003574D9</string>
-				<string>02ad4ba5-8ac3-4941-a1db-9ae34f8291c7build</string>
+				<string>681b1afb-ee7e-45d6-bd34-ff764f555821build</string>
 			</array>
 			<key>isa</key>
 			<string>PBXFrameworksBuildPhase</string>
@@ -708,7 +708,7 @@ mv build/Release-iphoneos/*.bundle ../build 2&gt;&gt;/dev/null || echo "No bundl
 				<string>B3FC517B15C14B2A003574D9</string>
 				<string>B3FC517D15C14B2A003574D9</string>
 				<string>B3FC517F15C14B2A003574D9</string>
-				<string>02ad4ba5-8ac3-4941-a1db-9ae34f8291c7file</string>
+				<string>681b1afb-ee7e-45d6-bd34-ff764f555821file</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>

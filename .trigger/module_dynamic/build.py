@@ -286,7 +286,7 @@ def apply_module_to_ios_project(module_path, project_path, skip_a=False, inspect
 			with cd(project_path):
 				build_params = {
 					'app_config': app_config,
-					'project_path': project_path,
+					'project_path': os.path.join(project_path, "ForgeInspector"),
 					'src_path': local_build_steps
 				}
 				for step in module_build_steps:
