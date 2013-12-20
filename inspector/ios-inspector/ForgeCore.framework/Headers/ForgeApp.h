@@ -11,7 +11,7 @@
 #import "ForgeAppDelegate.h"
 
 @interface ForgeApp : NSObject {
-	
+	int hideStatusCount;
 }
 
 /// Main webView used for Forge
@@ -25,6 +25,10 @@
 @property NSMutableArray* eventListeners;
 /// Whether the inspector module is enabled - used to enable extra debug events
 @property BOOL inspectorEnabled;
+/// The Y co-ordinate where the webview becomes visible (used to place things like the topbar)
+@property int webviewTop;
+/// The fake status bar element used to create the translucent glass effect on iOS 7
+@property UINavigationBar *statusBarBox;
 
 + (ForgeApp*)sharedApp;
 - (id)nativeEvent:(SEL)selector withArgs:(NSArray*)args;
@@ -33,5 +37,7 @@
 - (NSDictionary*)configForModule:(NSString*)name;
 - (NSString*)assetsFolderLocationWithPrefs:(NSUserDefaults*)prefs;
 - (NSString*)bundleLocationRelativeToAssets;
+- (void)showStatusBarBox;
+- (void)hideStatusBarBox;
 
 @end
