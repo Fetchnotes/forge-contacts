@@ -14,6 +14,15 @@
     [alert show];
 }
 
+//- (NSString *)encodeToBase64String:(UIImage *)image {
+//    return [UIImagePNGRepresentation(image) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+//}
+//
+//- (UIImage *)decodeBase64ToImage:(NSString *)strEncodeData {
+//    NSData *data = [[NSData alloc]initWithBase64EncodedString:strEncodeData options:NSDataBase64DecodingIgnoreUnknownCharacters];
+//    return [UIImage imageWithData:data];
+//}
+
 + (void)getContacts:(ForgeTask*)task Query:(NSString*)searchQuery Skip:(NSNumber*)skip Limit:(NSNumber*)limit {
     
     dispatch_queue_t queue;
@@ -62,6 +71,7 @@
                          ABRecordRef person = CFArrayGetValueAtIndex((__bridge CFArrayRef)(queriedAddressBook), i);
                          NSMutableArray *contactEmails = [[NSMutableArray alloc] init];
                          
+                         
                          ABMultiValueRef emails = ABRecordCopyValue(person, kABPersonEmailProperty);
                          for (CFIndex j=0; j < ABMultiValueGetCount(emails); j++) {
                              NSString* email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(emails, j);
@@ -88,6 +98,7 @@
                                                       contactLastName, @"lastName",
                                                       contactEmails, @"email",
                                                       contactPhoneNumbers, @"phone",
+//                                                      encodedContactPhoto, @"photo",
                                                       nil];
                              
                              [matchedContacts addObject:contact];
@@ -95,6 +106,7 @@
 
                          CFRelease(emails);
                          CFRelease(phoneNumbers);
+//                         CFRelease(imageData); // Crashes Everything
                      }
                  }
 
@@ -104,6 +116,96 @@
                      CFRelease(addressBook);
                      [task error:nil];
                  }
+                 
+             } else {
+                 [task error:@"Rejected"];
+             }
+         });
+    });
+}
+
++ (void)getPerson:(ForgeTask*)task withRecordNumber:(int)recordNumber {
+    
+    dispatch_queue_t queue;
+    
+    queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(queue, ^{
+        
+        CFErrorRef myError = NULL;
+        __block int startAt = [skip intValue];
+        __block int amtToReturn = [limit intValue];
+        ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, &myError);
+        
+        ABAddressBookRequestAccessWithCompletion(addressBook,
+         ^(bool granted, CFErrorRef error) {
+             if (granted) {
+                 ABRecordRef person = ABAddressBookGetPersonWithRecordID(ab,recordId.integerValue);
+
+                 NSString *contactFirstName = ABRecordCopyValue(person, kABPersonFirstNameProperty);
+                 NSString *contactLastName = ABRecordCopyValue(person, kABPersonLastNameProperty);
+                 if ([contactFirstName length] == 0) contactFirstName = @"";
+                 if ([contactLastName length] == 0) contactLastName = @"";
+
+                 NSMutableDictionary *contactPhoneNumbers = [[NSMutableDictionary alloc] init];
+                 NSMutableArray *contactEmails = [[NSMutableArray alloc] init];
+                 
+                 ABMultiValueRef emails = ABRecordCopyValue(person, kABPersonEmailProperty);
+                 for (CFIndex j=0; j < ABMultiValueGetCount(emails); j++) {
+                     NSString* email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(emails, j);
+                     [contactEmails addObject:email];
+                     CFRelease((__bridge CFTypeRef)(email));
+                 }
+                 
+                 ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
+                 for (CFIndex j=0; j< ABMultiValueGetCount(phoneNumbers); j++) {
+                     NSString* number = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, j);
+                     NSString* label = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneNumbers, j);
+   
+                     if (label)
+                         [contactPhoneNumbers setObject:number forKey:label];
+                     else
+                         [contactPhoneNumbers setObject:number forKey:@"other"];
+                     CFRelease((__bridge CFTypeRef)(number));
+                 }
+
+                 NSString* encodedContactPhoto = @"";
+                 if(ABPersonHasImageData(person)) {
+                     //                         CFDataRef imageData = ABPersonCopyImageData(person);
+                     UIImage* contactPhoto = [UIImage imageWithData:(__bridge NSData *)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)];
+                     //                         UIImage *contactPhoto = [UIImage imageWithData:(__bridge NSData *)imageData];
+
+                     
+                     if (contactPhoto) {
+                         // if ios7
+                         encodedContactPhoto = [UIImagePNGRepresentation(contactPhoto) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+                         // if ios6
+                         // initWithBase64Encoding
+                     }
+                 }
+                
+                 if ([contactPhoneNumbers count] != 0 || contactEmails.count != 0) {
+                     NSDictionary *contact = [NSDictionary
+                                              dictionaryWithObjectsAndKeys:
+                                              contactFirstName, @"firstName",
+                                              contactLastName, @"lastName",
+                                              contactEmails, @"email",
+                                              contactPhoneNumbers, @"phone",
+                                              encodedContactPhoto, @"photo",
+                                              nil];
+                     
+                     [matchedContacts addObject:contact];
+                 }
+                 
+                 CFRelease(emails);
+                 CFRelease(phoneNumbers);
+                                                 
+                 if (queriedAddressBook != nil) {
+                     [task success:matchedContacts];
+                 } else {
+                     CFRelease(addressBook);
+                     [task error:nil];
+                 }
+                 
              } else {
                  [task error:@"Rejected"];
              }
