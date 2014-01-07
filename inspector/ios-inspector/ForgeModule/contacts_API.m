@@ -139,58 +139,62 @@
              if (granted) {
                  NSMutableArray *finalContact = [[NSMutableArray alloc] init];
                  ABRecordRef person = ABAddressBookGetPersonWithRecordID(addressBook,recordID.integerValue);
-
-                 NSString *contactFirstName = (__bridge NSString *)(ABRecordCopyValue(person, kABPersonFirstNameProperty));
-                 NSString *contactLastName = (__bridge NSString *)(ABRecordCopyValue(person, kABPersonLastNameProperty));
-                 if ([contactFirstName length] == 0) contactFirstName = @"";
-                 if ([contactLastName length] == 0) contactLastName = @"";
-
-                 NSMutableDictionary *contactPhoneNumbers = [[NSMutableDictionary alloc] init];
-                 NSMutableArray *contactEmails = [[NSMutableArray alloc] init];
                  
-                 ABMultiValueRef emails = ABRecordCopyValue(person, kABPersonEmailProperty);
-                 for (CFIndex j=0; j < ABMultiValueGetCount(emails); j++) {
-                     NSString* email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(emails, j);
-                     [contactEmails addObject:email];
-                     CFRelease((__bridge CFTypeRef)(email));
-                 }
-                 
-                 ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
-                 for (CFIndex j=0; j< ABMultiValueGetCount(phoneNumbers); j++) {
-                     NSString* number = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, j);
-                     NSString* label = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneNumbers, j);
-   
-                     if (label)
-                         [contactPhoneNumbers setObject:number forKey:label];
-                     else
-                         [contactPhoneNumbers setObject:number forKey:@"other"];
-                     CFRelease((__bridge CFTypeRef)(number));
-                 }
+                 if (person) {
+                     NSString *contactFirstName = (__bridge NSString *)(ABRecordCopyValue(person, kABPersonFirstNameProperty));
+                     NSString *contactLastName = (__bridge NSString *)(ABRecordCopyValue(person, kABPersonLastNameProperty));
+                     if ([contactFirstName length] == 0) contactFirstName = @"";
+                     if ([contactLastName length] == 0) contactLastName = @"";
 
-                 NSString *dataUrl = @"";
-                 UIImage *contactPhoto;
-                 if(ABPersonHasImageData(person)) {
-                     contactPhoto = [UIImage imageWithData:(__bridge NSData *)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)];
-                     NSString *encodedContactPhoto = [UIImagePNGRepresentation(contactPhoto) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-                     dataUrl = [NSString stringWithFormat:@"data:image/png;base64,%@", encodedContactPhoto];
-                     dataUrl = [dataUrl stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+                     NSMutableDictionary *contactPhoneNumbers = [[NSMutableDictionary alloc] init];
+                     NSMutableArray *contactEmails = [[NSMutableArray alloc] init];
+                     
+                     ABMultiValueRef emails = ABRecordCopyValue(person, kABPersonEmailProperty);
+                     for (CFIndex j=0; j < ABMultiValueGetCount(emails); j++) {
+                         NSString* email = (__bridge NSString*)ABMultiValueCopyValueAtIndex(emails, j);
+                         [contactEmails addObject:email];
+                         CFRelease((__bridge CFTypeRef)(email));
+                     }
+                     
+                     ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
+                     for (CFIndex j=0; j< ABMultiValueGetCount(phoneNumbers); j++) {
+                         NSString* number = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneNumbers, j);
+                         NSString* label = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneNumbers, j);
+       
+                         if (label)
+                             [contactPhoneNumbers setObject:number forKey:label];
+                         else
+                             [contactPhoneNumbers setObject:number forKey:@"other"];
+                         CFRelease((__bridge CFTypeRef)(number));
+                     }
+
+                     NSString *dataUrl = @"";
+                     UIImage *contactPhoto;
+                     if(ABPersonHasImageData(person)) {
+                         contactPhoto = [UIImage imageWithData:(__bridge NSData *)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)];
+                         NSString *encodedContactPhoto = [UIImagePNGRepresentation(contactPhoto) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+                         dataUrl = [NSString stringWithFormat:@"data:image/png;base64,%@", encodedContactPhoto];
+                         dataUrl = [dataUrl stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+                     }
+                    
+                     if ([contactPhoneNumbers count] != 0 || contactEmails.count != 0) {
+                         NSDictionary *contact = [NSDictionary
+                                                  dictionaryWithObjectsAndKeys:
+                                                  contactFirstName, @"firstName",
+                                                  contactLastName, @"lastName",
+                                                  contactEmails, @"email",
+                                                  contactPhoneNumbers, @"phone",
+                                                  dataUrl, @"photo",
+                                                  nil];
+                         [finalContact addObject:contact];
+                     }
+                     
+                     CFRelease(emails);
+                     CFRelease(phoneNumbers);
+                     [task success:finalContact];
+                 } else {
+                     [task error:@"RecordID not found"];                     
                  }
-                
-                 if ([contactPhoneNumbers count] != 0 || contactEmails.count != 0) {
-                     NSDictionary *contact = [NSDictionary
-                                              dictionaryWithObjectsAndKeys:
-                                              contactFirstName, @"firstName",
-                                              contactLastName, @"lastName",
-                                              contactEmails, @"email",
-                                              contactPhoneNumbers, @"phone",
-                                              dataUrl, @"photo",
-                                              nil];
-                     [finalContact addObject:contact];
-                 }
-                 
-                 CFRelease(emails);
-                 CFRelease(phoneNumbers);
-                 [task success:finalContact];
              } else {
                  [task error:@"Rejected"];
              }
