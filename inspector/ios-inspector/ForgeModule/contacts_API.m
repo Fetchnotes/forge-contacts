@@ -168,10 +168,12 @@
                      CFRelease((__bridge CFTypeRef)(number));
                  }
 
-                 NSString* encodedContactPhoto = @"";
+                 NSString *dataUrl = @"";
+                 UIImage *contactPhoto;
                  if(ABPersonHasImageData(person)) {
-                     UIImage* contactPhoto = [UIImage imageWithData:(__bridge NSData *)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)];
-                     encodedContactPhoto = [UIImagePNGRepresentation(contactPhoto) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+                     contactPhoto = [UIImage imageWithData:(__bridge NSData *)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)];
+                     NSString *encodedContactPhoto = [UIImagePNGRepresentation(contactPhoto) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+                     dataUrl = [NSString stringWithFormat:@"data:image/png;base64,%@", encodedContactPhoto];
                  }
                 
                  if ([contactPhoneNumbers count] != 0 || contactEmails.count != 0) {
@@ -181,18 +183,16 @@
                                               contactLastName, @"lastName",
                                               contactEmails, @"email",
                                               contactPhoneNumbers, @"phone",
-                                              encodedContactPhoto, @"photo",
+                                              dataUrl, @"photo",
                                               nil];
-                     
                      [finalContact addObject:contact];
                  }
                  
                  CFRelease(emails);
                  CFRelease(phoneNumbers);
-                 
+//                 CFRelease(addressBook); //CRASHES                 
+//                 CFRelease((__bridge CFTypeRef)(contactPhoto)); //CRASHES
                  [task success:finalContact];
-//                 CFRelease(addressBook); //maybe
-                 
              } else {
                  [task error:@"Rejected"];
              }

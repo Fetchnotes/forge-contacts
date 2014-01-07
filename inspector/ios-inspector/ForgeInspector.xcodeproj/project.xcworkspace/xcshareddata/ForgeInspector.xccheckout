@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>6233A400-82D3-4773-BED5-D5A6195A6D71</string>
+	<string>E1B702A3-2530-41EE-92D7-2300C8AA5911</string>
 	<key>IDESourceControlProjectName</key>
 	<string>ForgeInspector</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>B526BD9B-9DFD-4240-9BA7-DC161211EF48</key>
+		<key>9705655D-588E-4E0E-A6DD-E982F5AA5AEF</key>
 		<string>https://github.com/horak/get-contacts-quicklier.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>inspector/ios-inspector/ForgeInspector.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>B526BD9B-9DFD-4240-9BA7-DC161211EF48</key>
+		<key>9705655D-588E-4E0E-A6DD-E982F5AA5AEF</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>B526BD9B-9DFD-4240-9BA7-DC161211EF48</string>
+	<string>9705655D-588E-4E0E-A6DD-E982F5AA5AEF</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B526BD9B-9DFD-4240-9BA7-DC161211EF48</string>
+			<string>9705655D-588E-4E0E-A6DD-E982F5AA5AEF</string>
 			<key>IDESourceControlWCCName</key>
 			<string>contacts</string>
 		</dict>
