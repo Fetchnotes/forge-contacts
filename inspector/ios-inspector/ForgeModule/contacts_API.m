@@ -173,6 +173,7 @@
                      contactPhoto = [UIImage imageWithData:(__bridge NSData *)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail)];
                      NSString *encodedContactPhoto = [UIImagePNGRepresentation(contactPhoto) base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
                      dataUrl = [NSString stringWithFormat:@"data:image/png;base64,%@", encodedContactPhoto];
+                     dataUrl = [dataUrl stringByReplacingOccurrencesOfString:@"\n" withString:@""];
                  }
                 
                  if ([contactPhoneNumbers count] != 0 || contactEmails.count != 0) {

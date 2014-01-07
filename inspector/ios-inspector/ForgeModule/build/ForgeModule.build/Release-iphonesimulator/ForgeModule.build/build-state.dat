@@ -468,8 +468,8 @@ t1389116379
 s73812
 
 N/Users/horak/Fetchnotes/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/build/Release-iphonesimulator/libForgeModule.a
-t1389115065
-s106144
+t1389116379
+s106136
 
 N/Users/horak/Fetchnotes/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.h
 c00000000528D51FA0000000000000138
@@ -499,7 +499,7 @@ s5077788
 
 CCheck dependencies
 r0
-lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies9aee815b737cb841^f3578c5b737cb841^---0#1#1#--18"Check dependencies36"FA492EF8-1713-4895-B1CE-45A02B219C65-
+lSLF06#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies18"Check dependencies075fe085737cb841^8b50ec85737cb841^---0#1#1#--18"Check dependencies36"037CDB33-5538-4BF9-B1BB-C46940BAAFC3-
 
 CCompileC build/ForgeModule.build/Release-iphonesimulator/ForgeModule.build/Objects-normal/i386/contacts_API.o /Users/alexhorak/forge-workspace/modules/contacts/inspector/ios-inspector/ForgeModule/contacts_API.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
 s404331791.557266
