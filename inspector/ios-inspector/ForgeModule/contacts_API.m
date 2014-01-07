@@ -107,7 +107,6 @@
 
                          CFRelease(emails);
                          CFRelease(phoneNumbers);
-//                         CFRelease(imageData); // Crashes Everything
                      }
                  }
 
@@ -190,8 +189,6 @@
                  
                  CFRelease(emails);
                  CFRelease(phoneNumbers);
-//                 CFRelease(addressBook); //CRASHES                 
-//                 CFRelease((__bridge CFTypeRef)(contactPhoto)); //CRASHES
                  [task success:finalContact];
              } else {
                  [task error:@"Rejected"];
